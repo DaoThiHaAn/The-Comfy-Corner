@@ -1,0 +1,86 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 30px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 80%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+
+.form-group input {
+    height: 25px;
+    padding: 10px;
+    border: 1px solid #b4b4b4;
+    width: 40%;
+    border-radius: 2px;
+}
+
+.form-group input:focus, textarea:focus {
+    border-color: var(--dark-pink);
+    border-width: 2px;
+    outline: none;
+}
+
+.form-group label {
+    font-size: 18px;
+}
+
+.form-group input[type="radio"] {
+    height: 20px;
+    width: fit-content
+}
+
+.form-container form button {
+    background-color: #481422;
+    color: white;
+    border: none;
+    padding: 10px ;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 30%
+}
+
+.form-container form button:hover {
+    background-color: #bd667d;
+}
+
+
+/* The Quill editor container */
+.editor-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.ql-editor {
+    padding: 10px;
+    font-size: 14px;
+    min-height: 130px;
+    line-height: 1.5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: auto; 
+}
+
+#editor {
+    height: 200px;
+    background-color:whitesmoke;
+    max-width: 80%;
+    overflow: auto; 
+}
+
+

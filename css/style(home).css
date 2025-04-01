@@ -1,0 +1,84 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    text-decoration: blink;
+    font-family: "Patrick Hand";
+    letter-spacing: 0.1cap;
+    font-size: x-large;
+    color: #481422;
+    padding: 20px;
+}
+
+/* SLIDER IMAGES */
+.slider {
+    width: 100vw;
+    height: max-content;
+    position: relative;
+    overflow: hidden;
+}
+
+/* The slides container remains a flex container */
+.slides {
+    display: flex;
+    transition: transform 1s linear; /* Linear slide transition */
+}
+
+/* Set each image to fill the slider fully */
+.slides img {
+    min-width: 100vw;
+    object-fit: cover;
+}
+
+/* .content */
+.content {
+    padding: 50px;
+    text-align: justify;
+}
+
+blockquote {
+    color: #bd667d;
+    font-style: italic;
+    font-size: 20px;
+    font-weight:900;
+    padding: 10px 20px;
+    white-space: pre-wrap;
+    quotes: """ """;
+    text-align: center;
+    letter-spacing: 0.15cap;
+    line-height: 2cap;
+}
+
+blockquote::before {
+    content: open-quote;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+blockquote::after {
+    content: close-quote;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 700px) {
+    blockquote {
+        padding-left: 5px;
+        padding-right: 5px;
+        letter-spacing: 0.05cap;
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header {
+        font-size: large;
+    }
+}
+

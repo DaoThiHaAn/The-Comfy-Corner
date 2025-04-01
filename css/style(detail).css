@@ -1,0 +1,218 @@
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: zoom-out;
+}
+
+.lightbox-img {
+    object-fit: fill;
+    max-height: 90%;
+    max-width: 90%;
+}
+
+.view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 100px;
+    background-color: whitesmoke;
+}
+
+.main-part {
+    max-width: 80%;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    background-color: white;
+    margin-top: 40px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow:
+        0 -5px 10px 0 rgba(194, 194, 194, 0.2), /*top shadow*/
+        0 5px 10px 0 rgba(194, 194, 194, 0.2), /*bottom shadow*/
+        5px 0 10px 0 rgba(194, 194, 194, 0.2), /*right shadow*/
+        -5px 0 10px 0 rgba(194, 194, 194, 0.2); /*left shadow*/
+}
+
+.image {
+    display: block;
+    border: solid 1px rgb(167, 162, 165);
+    width: 300px;
+    overflow: hidden;
+    flex: 2;
+}
+
+.clickable-img {
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+    object-fit: cover;
+}
+
+.info-site {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(251, 233, 232);
+    color: rgb(159, 19, 19);
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid rgb(203, 114, 114);
+    margin-bottom: 50px;
+    width: 70%;
+}
+
+.name {
+    color: rgb(109, 9, 49);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.detail-container {
+    width: 100%;
+}
+
+.addtocart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.addtocart button {
+    background-color: rgb(250, 244, 244);
+    border: solid 1px rgb(203, 114, 114);
+    border-radius: 5px;
+}
+
+.addtocart button:hover {
+    background-color: rgb(221, 220, 220);
+}
+
+
+.change-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.change-num button img {
+    width: 17px;
+}
+
+.change-num input {
+    width: 40px;
+    text-align: center;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(98, 97, 97);
+}
+
+.change-num input:focus {
+    outline: 1px solid rgb(255, 124, 146);
+    border: 1px solid rgb(255, 124, 146);
+}
+
+.addtocart-btn {
+    width: 60px;
+}
+
+.addtocart-btn img {
+    width: 40px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    padding-top: 0;
+    padding-bottom: 50px;
+    width: 80%;
+    padding-left: 50px;
+    padding-right: 50px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.description-title {
+    color: rgb(167, 34, 87);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description-title hr {
+    border: none;
+    border-top: solid 2px rgb(214, 170, 187); /* Increase thickness for visibility */
+    width: 100%;
+    margin: 10px 0; /* Add spacing above and below */
+}
+
+.description-content {
+    color: rgb(76, 76, 76);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 700px) {
+    .description-title {
+        font-size: 19px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .addtocart-btn {
+        width: 50px;
+    }
+
+    .addtocart-btn img {
+        width: 25px;
+    }
+    
+
+    .change-num button img {
+        width: 10px;
+    }
+
+    .change-num input {
+        height: 20px;
+    }
+
+    .main-part {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .image {
+        max-width: 200px;
+    }
+   
+}

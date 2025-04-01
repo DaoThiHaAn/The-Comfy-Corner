@@ -1,0 +1,1 @@
+<?php define('ADMIN_SETUP', true);

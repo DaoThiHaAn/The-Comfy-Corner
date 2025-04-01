@@ -1,0 +1,34 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 40px;
+    flex-wrap: wrap;
+    min-height: 80vh;
+}
+
+.dashboard-container img {
+    width: 100px;
+    height: 100px;
+}
+
+.dashboard-container button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(246, 246, 246);
+    border: none;
+    padding: 25px;
+    gap: 20px;
+    box-sizing: content-box;
+    font-size: 18px;
+    color: var(--dark-pink);
+    outline: 1px solid wheat;
+}
+
+.dashboard-container button:hover {
+    outline: 2px solid var(--dark-pink);
+}

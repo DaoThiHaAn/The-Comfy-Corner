@@ -1,0 +1,63 @@
+.mgnt-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.drawer {
+    flex: 1;
+    background-color: #f0f0f0;
+    border-right: 1px solid wheat;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    padding: 10px; /* Adds inner spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.drawer .logo {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto 10px;
+    border-radius: 4px;
+}
+
+.drawer h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: "Patrick Hand", cursive;
+    color: #333;
+    font-size: 25px;
+}
+
+.drawer hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+.drawer a {
+    display: block;
+    padding: 10px 15px;
+    margin: 8px 0;
+    text-decoration: none;
+    color: grey;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.drawer a:hover{
+    background-color: wheat;
+    color: orange;
+    border-color: orange;
+}
+
+.drawer .item-active {
+    background-color: wheat;
+    color: orange;
+}
+
+.action-screen {
+    flex: 5;
+}

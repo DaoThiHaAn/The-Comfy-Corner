@@ -1,0 +1,463 @@
+:root {
+    --salmon-pink: #ea9eaaff;
+    --dark-pink: #8f354d;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    font-family: serif;
+    font-size: 18px;
+    margin: 0;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+#topbtn {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    border-radius: 10px;
+    bottom: 20px;
+    right: 30px;
+    background-image: url("../images/top.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    border: thin solid #8f354d;
+}
+
+#topbtn:hover {
+    box-shadow:
+        3px 0 7px 0 rgba(215, 213, 213, 0.7),
+        -3px 0 7px 0 rgba(215, 213, 213, 0.7),
+        0 3px 7px 0 rgba(215, 213, 213, 0.7),
+        0 -3px 7px 0 rgba(215, 213, 213, 0.7);
+}
+
+
+/* Navigation */
+.openmenu {
+    display: none;
+}
+
+nav {
+    position: fixed;  /* Fixed navbar on the top of the page */
+    width: 100%;
+    top: 0;
+    background-color: var(--dark-pink);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 17px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+    transition: box-shadow 0.3s ease-in-out;
+    align-items: center;
+    height: max-content;
+}
+
+.navbar.scrolled {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+nav a, .dropbtn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: medium;
+    text-align: center;
+    margin-right: 10px;
+    cursor:pointer;
+}
+
+nav a img {
+    height: 16px;
+}
+
+nav a:hover, nav a.active:hover, .dropdown:hover .dropbtn, .openmenu:hover {
+    border-radius: 5px;
+    background-color: #cc99a7;
+    color: #6e374e;
+    font-weight: bold;
+}
+
+nav a.active, .cart-btn.active {
+    background-color: #ce7990;
+    color: #6e374e;;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.openmenu {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 0;
+    display: none;
+    margin-right: 20px;
+}
+
+.dropdown {
+    display: inline-block;
+    height: max-content;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #cc99a7;
+    width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0;
+}
+
+.dropdown-content a:hover {
+    background-color: #facdec;
+    color: #cd7499;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.signinup-btn {
+    display: flex;
+    height: 33px;
+    padding: 3px;
+    background-color: #fff1ed;
+    margin-left: 20px;
+    margin-right: 30px;
+    border-radius: 20px;
+}
+
+.signin-btn img {
+    width: 20px; height: 20px;
+}
+
+.signinup-btn button {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(91, 33, 42);
+    background-color: #fff1ed;
+    border-top: none;
+    border-bottom: none;
+}
+
+.signinup-btn button:hover {
+    background-color: #f9dbd3;;
+}
+
+.signin-btn {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-left: 15px;
+    border-right: 1.5px solid #8f354d;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.signup-btn {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-right: 15px;
+    border: none;
+}
+
+.account {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.account img {
+    height: 25px;
+}
+
+.username-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-navbar p {
+    margin: 0;
+    font-style: normal;
+    color: rgb(191, 191, 191);
+    font-size: 14px;
+
+}
+
+.cart-navbar button {
+    background: none;
+    border: none;
+    outline: none;
+    margin-right: 70px;
+    height: 40px;
+    padding: 5px;
+}
+
+.cart-navbar button:hover {
+    background-color: #cc99a7;
+    border-radius: 5px;
+}
+
+.cart {
+    height: 25px;
+}
+
+
+
+main {
+    min-height: 80vh;
+}
+
+/* LOGIN DIALOG */
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.dialog {
+    background-color: rgb(106, 9, 25);
+    border-radius: 10px;
+    width: max-content;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2px;
+    height: fit-content;
+}
+
+.dialog-header {
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.dialog-body {
+    line-height: 1.5;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+    border-bottom-right-radius: 10px ;
+    border-bottom-left-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dialog-body .content p {
+    font-size: 16px;
+}
+
+.dialog-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.ok-btn {
+    background-color: var(--dark-pink);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    height: 40px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50px;
+}
+
+.ok-btn:hover {
+    background-color: #a57488;
+}
+
+.cancel-btn {
+    color: grey;
+    font-weight: bold;
+    font-size: 14px;
+    height: 30px;
+    border: solid 1px grey;
+    padding: 5px;
+    border-radius: 5px;
+    width: 70px;
+    display: none
+}
+
+.cancel-btn:hover {
+    background-color: rgb(219, 218, 218);
+}
+
+/* Footer */    
+footer {
+    background-color: var(--salmon-pink);
+    background-image: url("../images/store-icon.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 200px;
+    padding: 20px;
+    text-align: left;
+    color: white;
+    font-size: 16px;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.footer-contact, .footer-social {
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-social img:hover {
+    transform: scale(1.2);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.tel {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 16px;
+    }
+
+    nav {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    .navbar a {
+        display: none;
+    }
+
+    .navbar .openmenu {
+        display: block;
+        float: left;
+    }
+
+    .signinup-btn {
+        margin-left: 10px;
+        height: 30px;
+        padding: 2px;
+    }
+
+    .signinup-btn button {
+        font-size: 14px;
+    }
+
+    .signin-btn {
+        padding-left: 10px;
+    }
+
+    .signup-btn {
+        padding-right: 10px;
+    }
+
+    .signin-btn img {
+        width: 17px;
+        height: 17px;
+    }
+
+    .dialog-body .content{
+        font-size: 13px;
+    }
+
+    .dialog-header h3 {
+        font-size: 15px;
+    }
+
+    footer {
+        font-size: 13px;
+        background-size: 100px;
+    }
+    
+    .footer-social img {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease-in-out;
+    }    
+}
+
+@media screen and (max-width: 700px) {
+    .navbar.responsive {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar.responsive .openmenu {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 20px;
+    }
+
+    .navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}

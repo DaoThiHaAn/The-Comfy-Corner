@@ -1,0 +1,116 @@
+console.log("script.js loaded");
+
+const homeicon = document.getElementById("homeicon");
+var navbar = document.getElementById("navbar")
+
+
+document.getElementById("homebtn").addEventListener("mouseover", () => {
+    homeicon.src = base_url + "images/home-hover.png";
+});
+
+document.getElementById("homebtn").addEventListener("mouseout", () => {
+    if (!window.location.href.includes("page=home")) {
+        homeicon.src = base_url + "images/home.png";
+    }
+});
+
+function openMenu() {
+    var menuicon = document.querySelector(".openmenu img")
+    if (navbar.classList.contains("responsive")) {
+        navbar.classList.remove("responsive");
+        menuicon.src = base_url + "images/list-view.png";
+    } else {
+        navbar.classList.add("responsive");
+        menuicon.src = base_url + "images/close.png";
+    }
+}
+
+function openDropdown() {
+    var dropdown = document.getElementsByClassName("dropbtn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdwnContent = this.nextElementSibling;
+            if (dropdwnContent.style.display === "block") {
+                dropdwnContent.style.display = "none";
+            } else {
+                dropdwnContent.style.display = "block";
+            }
+        });
+    }
+}
+
+let topbtn = document.getElementById("topbtn");
+window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+        topbtn.style.display = "block";
+        navbar.classList.add("scrolled");
+
+    } else {
+        topbtn.style.display = "none";
+        navbar.classList.remove("scrolled");
+    }
+});
+
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    openDropdown();
+});
+
+
+//Adjust top-margin of main content
+function adjustMarginTop() {
+    const navbar = document.getElementById("navbar");
+    const content = document.querySelector("main"); // Adjust based on your layout
+    if (navbar && content) {
+        let navbarHeight = navbar.offsetHeight; 
+        content.style.marginTop = navbarHeight + "px";
+    }
+}
+
+// Run on page load and when resizing window
+window.onload = adjustMarginTop;
+window.onresize = adjustMarginTop;
+
+function openDialog(contents) {
+    let contentDiv = document.querySelector('.content');
+    contentDiv.innerHTML = '';
+
+    contents.forEach(text => {
+        let p = document.createElement('p');
+        p.textContent = text;
+        contentDiv.appendChild(p);
+    });
+
+    document.querySelector('.dialog-container').style.display = 'flex';
+}
+
+function closeDialog() {
+    document.querySelector('.dialog-container').style.display = 'none';
+}
+
+
+function openLogoutDialog() {
+    let contentDiv = document.querySelector('.dialog-body .content');
+    let p = document.createElement('p');
+    p.textContent = 'Are you sure to logout? 😟';
+    contentDiv.innerHTML = p.outerHTML;
+    document.querySelector('.dialog').style.width = '25%';
+    document.querySelector('.ok-btn').onclick = confirmLogout;
+    document.querySelector('.cancel-btn').style.display = 'block';
+    document.querySelector('.dialog-container').style.display = 'flex';
+}
+
+function confirmLogout() {
+    document.querySelector('.dialog-container').style.display = 'none';
+    window.location.href = "index.php?page=logout";
+}
+
+
+
