@@ -58,10 +58,25 @@ nav {
     font-size: 17px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     z-index: 999;
     transition: box-shadow 0.3s ease-in-out;
     align-items: center;
     height: max-content;
+}
+
+.shopname-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    font-family: "Patrick Hand";
+    font-size: 20px;
+    color: white;
+    gap: 10px;
+    font-weight: medium;
+    margin-left: 30px;
 }
 
 .navbar.scrolled {
@@ -160,6 +175,7 @@ nav a.active, .cart-btn.active {
     background-color: #fff1ed;
     border-top: none;
     border-bottom: none;
+    min-width: 100px;
 }
 
 .signinup-btn button:hover {
@@ -183,9 +199,14 @@ nav a.active, .cart-btn.active {
     padding-right: 15px;
     border: none;
 }
+.cart-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
 .account {
-    margin-right: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -198,20 +219,16 @@ nav a.active, .cart-btn.active {
     height: 25px;
 }
 
-.username-navbar {
+.logout {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 5px;
 }
 
-.username-navbar p {
-    margin: 0;
-    font-style: normal;
-    color: rgb(191, 191, 191);
-    font-size: 14px;
-
+.logout img {
+    height: 25px;
 }
+
 
 .cart-navbar button {
     background: none;
@@ -274,6 +291,7 @@ main {
 .dialog-body {
     line-height: 1.5;
     padding-bottom: 30px;
+    padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
     background-color: white;
@@ -285,6 +303,12 @@ main {
 
 .dialog-body .content p {
     font-size: 16px;
+    margin: 0;
+}
+
+.dialog-body .content{
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 .dialog-btn {
@@ -378,7 +402,7 @@ footer a:hover {
     font-weight: bold;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 769px) {
     body {
         font-size: 16px;
     }
@@ -386,10 +410,18 @@ footer a:hover {
     nav {
         justify-content: flex-start;
         padding-left: 10px;
+        white-space: nowrap;
+    }
+    .shopname-container {
+        margin-left: 10px;
     }
 
     .navbar a {
         display: none;
+    }
+
+    .navbar .account {
+        display: block;
     }
 
     .navbar .openmenu {
@@ -405,6 +437,7 @@ footer a:hover {
 
     .signinup-btn button {
         font-size: 14px;
+        min-width: fit-content;
     }
 
     .signin-btn {
@@ -437,15 +470,16 @@ footer a:hover {
         width: 20px;
         height: 20px;
         transition: transform 0.3s ease-in-out;
-    }    
+    }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 769px) {
     .navbar.responsive {
         position: fixed;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 7px;
     }
 
     .navbar.responsive .openmenu {
@@ -459,5 +493,33 @@ footer a:hover {
         float: none;
         display: block;
         text-align: left;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar.responsive {
+        gap: 4px;
+    }
+
+    .navbar.responsive .openmenu {
+        margin-right: 10px;
+    }
+
+    .shopname-container {
+        max-width: 100px;
+        font-size: 16px;
+        margin-left: 0;
+    }
+
+    .cart-navbar button {
+        margin-right: 0;
+    }
+
+    .dropdown.account-navar {
+        width:fit-content
+    }
+
+    .openmenu {
+        margin-right: 5px;
     }
 }

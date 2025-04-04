@@ -61,3 +61,68 @@
 .action-screen {
     flex: 5;
 }
+
+/* Responsive styles: mobile view */
+@media screen and (max-width: 768px) {
+  .mgnt-container {
+    flex-direction: column;
+  }
+
+  /* Hide the drawer off-canvas by default */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: 150px;
+    width: 100px;
+    height: 100%;
+    background-color: #f0f0f0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .drawer .logo {
+    width: 100%;
+  }
+
+  .drawer h3 {
+    font-size: 20px;
+  }
+  .drawer a {
+    font-size: 14px;
+  }
+
+  /* When toggled open */
+  .drawer.active {
+    transform: translateX(0);
+  }
+
+  /* Optionally adjust the action area when the drawer is visible */
+  .action-screen {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
+}
+
+/* Style for a toggle button */
+.toggle-drawer-btn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .toggle-drawer-btn {
+    display: inline-block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

@@ -78,7 +78,11 @@ function adjustMarginTop() {
 window.onload = adjustMarginTop;
 window.onresize = adjustMarginTop;
 
-function openDialog(contents) {
+function openDialog(contents, header = '') {
+    if (header !== '') {
+        let headerDiv = document.querySelector('.dialog-header');
+        headerDiv.textContent = header;
+    }
     let contentDiv = document.querySelector('.content');
     contentDiv.innerHTML = '';
 

@@ -4,22 +4,31 @@
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    padding: 30px;
+    margin: 50px;
 }
 
 .form-container form {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    max-width: 80%;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.form-container h2 {
+    color: var(--dark-pink);
+    margin-bottom: 40px;
 }
 
 .form-group {
-    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 30px;
+}
+
+.form-group label {
+    max-width: 400px;
 }
 
 .form-group input {
@@ -28,6 +37,7 @@
     border: 1px solid #b4b4b4;
     width: 40%;
     border-radius: 2px;
+    max-width: 300px;
 }
 
 .form-group input:focus, textarea:focus {
@@ -43,6 +53,16 @@
 .form-group input[type="radio"] {
     height: 20px;
     width: fit-content
+}
+
+#new_category_input {
+    display:none;
+}
+
+#new_category_input p {
+    font-size: 15px;
+    color: #9f9f9f;
+    font-style: italic;
 }
 
 .form-container form button {
@@ -74,13 +94,54 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: auto; 
+    white-space: pre-wrap;      /* Preserve line breaks and wrap text */
+    word-break: break-word;     /* Break long words if necessary */
+    overflow-wrap: break-word;  /* Additional wrapping for long URLs etc. */
+}
+
+.ql-editor:focus {
+    outline: none;
+    border-color: var(--dark-pink);
+    border-width: 2px;
 }
 
 #editor {
-    height: 200px;
+    border: none;
+    min-height: 200px;
+    height: 500px;
     background-color:whitesmoke;
-    max-width: 80%;
     overflow: auto; 
+    width: 100%;
+    box-sizing: border-box; /* Include padding/border in width calculation */
 }
 
+@media screen and (max-width: 768px) {
+    .form-container {
+        margin: 20px;
+    }
 
+    .form-container form {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group label {
+        font-size: 17px;
+    }
+    
+    .form-group input[type="radio"] {
+        height: 18px;
+    }
+    
+    
+    #new_category_input p {
+        font-size: 13px;
+    }
+    
+    
+}

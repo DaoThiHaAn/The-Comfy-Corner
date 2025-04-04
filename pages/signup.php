@@ -81,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="form-note">
                 *Note: You must fill in all the fields
             </p>
-            <input type="text" placeholder="First name" name="fname" value="<?=htmlspecialchars($fname)?>" required>
-            <input type="text" placeholder="Last name" name="lname" value="<?=htmlspecialchars($lname)?>" required>
-            <input type="email" placeholder="Email" name="email" value="<?=htmlspecialchars($email)?>" required>
-            <input class="username" type="text" placeholder="Username" name="uname" value="<?=htmlspecialchars($username)?>"required>
+            <input type="text" placeholder="First name" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" required>
+            <input type="text" placeholder="Last name" name="lname" value="<?=htmlspecialchars($lname)?>" maxlength="255" required>
+            <input type="email" placeholder="Email" name="email" value="<?=htmlspecialchars($email)?>" maxlength="255" required>
+            <input class="username" type="text" placeholder="Username" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
             <div class="acc-requirement">
                 <p>Username must:</p>
                 <!-- Check username requirement -->

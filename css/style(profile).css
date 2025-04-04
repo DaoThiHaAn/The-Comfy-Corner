@@ -1,0 +1,100 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+
+.profile-header h2 {
+    color: var(--salmon-pink);
+}
+
+.profile-header p {
+    color: #666;
+}
+
+.profile-info {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-info label {
+    font-weight: bold;
+    color: #333;
+    flex: 3;
+}
+
+.profile-info p {
+    margin: 5px 0 0;
+    color: #555;
+    flex:5;
+}
+
+.actions {
+    margin-top: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.actions a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: var(--dark-pink);
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.actions a:hover {
+    background-color: var(--salmon-pink);
+}
+
+.actions .logout {
+    background-color: ghostwhite;
+    border: 1.5px solid #c7c7c7;
+    color: #686666;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.actions .logout:hover {
+    background-color: #333;
+    color: ghostwhite;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+   .actions a {
+    font-size: 13px;
+    padding: 5px;
+   }
+}

@@ -1,6 +1,7 @@
 <?php
     $sel_product = $mydatabase->query("SELECT * FROM product WHERE id = '$_GET[productId]'")->fetch_assoc();
     $name = $sel_product['name'];
+    $stock_quantity = $sel_product['stock_quantity'];
     $price = number_format($sel_product['price'], 0, '.', ',');
     $type_name = $mydatabase->query("SELECT name FROM category WHERE id = " .$sel_product['category_id'])->fetch_assoc()['name']; //get the type name from category table
     if (is_null($sel_product['image']) || $sel_product['image'] === '') {
@@ -28,6 +29,7 @@
             <div class="price">
                 <p><?=$price?> &nbsp; VND</p>
             </div>
+            <p class="stock">Stock: <?=$stock_quantity?></p> <!-- Display stock quantity -->
 
             <div class="addtocart">
                 <form class="change-num">
@@ -58,7 +60,7 @@
 
         <div class="description-content">
             <p>
-                <?=nl2br(htmlspecialchars($description, ENT_QUOTES, 'UTF-8'))?>
+                <?=$description?>
             </p>
         </div>
     </div>

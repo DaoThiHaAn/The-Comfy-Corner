@@ -18,7 +18,7 @@ const psswdChar = document.querySelector('.pssw-char');
 const psswdMatch = document.querySelector('.password-cf');
 
 //check username
-if (usernameInput !== null) {
+if (usernameInput !== null && namePattern !== null) {
     usernameInput.addEventListener('input', function() {
         if (/^[a-zA-z][a-zA-Z0-9_]+$/.test(usernameInput.value)) {
             namePattern.classList.add("valid");
@@ -32,7 +32,7 @@ if (usernameInput !== null) {
 
 var correctPsswdchar = false;
 var correctPsswdlen = false;
-if (psswdInput !== null) {
+if (psswdInput !== null && psswdLen !== null && psswdChar !== null) {
     psswdInput.addEventListener('input', function() {
         // check password
         if (psswdInput.value.length >= 8) {
@@ -116,7 +116,7 @@ if (usernameInput !== null) {
     document.addEventListener("DOMContentLoaded", function() {
         usernameInput.dispatchEvent(new Event('input'));
         psswdInput.dispatchEvent(new Event('input'));
-        psswdMatch.dispatchEvent(new Event('input'));
+        if (psswdMatch) psswdMatch.dispatchEvent(new Event('input'));
     });
 }
 

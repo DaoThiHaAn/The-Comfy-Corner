@@ -1,4 +1,6 @@
 <section class="mgnt-container">
+    <button class="toggle-drawer-btn" onclick="toggleDrawer()">☰ Menu</button>
+    
     <section class="drawer">
         <img src="images/logo-text.jpg" alt="Logo" class="logo">
         <h3>Product Management</h3>
@@ -21,5 +23,5 @@
             include $_GET['tab'] . '.php';
         } 
         ?>
-    </section>
+    </section>    
 </section>

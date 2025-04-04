@@ -66,19 +66,4 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     </div>
 </div>
 
-<div class="dialog-container">
-    <div class="dialog">
-        <div class="dialog-header">
-            <h3>WARNING!</h3>
-        </div>
-
-        <div class="dialog-body">
-            <div class="content"></div>
-            <div class="login-dialog-btn">
-                <button class="ok-btn" onclick="closeDialog()">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 

@@ -125,7 +125,7 @@ $items = $mydatabase->query($user_query);
     <div class="showscreen">
         <!-- TODO: live search --> 
         <div class="searchbar">
-            <form action="index.php?page=products" method="GET">  <!--handling form in the same file-->
+            <form id = "search-form" action="index.php?page=products" method="GET">  <!--handling form in the same file-->
                 <input type="hidden" name="page" value="products">  <!-- Ensures 'page=products' is always included -->
                 
                 <!-- Combine with filter and sort -->
@@ -134,10 +134,14 @@ $items = $mydatabase->query($user_query);
                 <?php } ?>
                 <input type="hidden" name="sort" value="<?= htmlspecialchars($selected_sort) ?>">
                 
-                <input type="text" placeholder="Input product name..." name="search" value="<?= htmlspecialchars($search) ?>">
+                <input type="text" id="search-input" placeholder="Input product name..." name="search" size="50"
+                    value="<?= htmlspecialchars($search) ?>" onkeyup="showResults(this.value)">
                 <button type="submit">
                     <img src="images/search.png" alt="Search icon">
                 </button>
+
+                <!-- Suggestions dropdown -->
+                <div id="livesearch-box" class="suggestion-box"></div>
             </form>
         </div>
 
@@ -158,8 +162,7 @@ $items = $mydatabase->query($user_query);
                     $name = $row['name'];
                     $price = number_format($row['price'], 0, '.', ',');
                     $type_name = $mydatabase->query("SELECT name FROM category WHERE id = " .$row['category_id'])->fetch_assoc()['name']; //get the type name from category table
-                    $image_path = "images/$type_name/" .$row['image'];
-                    
+                    $image_path = "images/$type_name/" .$row['image'];                    
             ?>
 
             <div class="card">

@@ -75,11 +75,18 @@ function fetchUsername($loginname):string {
         <link rel="stylesheet" href="css/style(index).css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick Hand">
 
+
     <!-- SEO -->
         <meta name="description" content="The Comfy Corner - One-stop shop for all your homeware needs. Discover a wide range of products to make your home cozy and stylish.">
         <meta name="keywords" content="houseware, store, comfy, corner, products, shopping, furniture, decor">
         <meta name="author" content="Dao Thi Ha An">
         <meta name="robots" content="noindex, follow">
+
+        <script>
+            const base_url = "<?php echo $base_url; ?>";
+            console.log("BASE_URL:", base_url); // Debugging to check if BASE_URL is correct
+        </script>    
+        <script src="js/script.js" defer></script>
 
 
     <!-- Link the needed css file for selected page-->
@@ -91,18 +98,21 @@ function fetchUsername($loginname):string {
         if (file_exists("css/style($css_page).css")) {
             echo "<link rel='stylesheet' href='css/style($css_page).css'>";
         }
-        if (isset($_GET['tab']))
+        if (isset($_GET['tab'])) {
             echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
+            echo "<script src='js/script({$_GET['tab']}).js' defer></script>";
+        } else {
+            echo "<script src='js/script($css_page).js' defer></script>";
+        }
 
         ?>
-        <script src="js/script.js" defer></script>
         <script src="js/script(<?=$css_page?>).js" defer></script>
     </head>
 
     <body>
         <button onclick="scrollToTop()" id="topbtn"></button>
         
-        <?php include("pages/navbar.php"); ?>
+        <?php include("include/navbar.php"); ?>
 
         <!-- Load the selected page -->
         <main>
@@ -116,7 +126,7 @@ function fetchUsername($loginname):string {
         </main>
 
 
-        <div class="dialog-container">
+        <dialog class="dialog-container">
             <div class="dialog">
                 <h3 class="dialog-header">WARNING!</h3>
 
@@ -128,14 +138,10 @@ function fetchUsername($loginname):string {
                     </div>
                 </div>
             </div>
-        </div>
+        </dialog>
 
-        <?php include("pages/footer.php"); ?>
+        <?php include("include/footer.php"); ?>
 
     </body>
 </html>
 
-<script>
-    const base_url = "<?php echo $base_url; ?>";
-    console.log("BASE_URL:", base_url); // Debugging to check if BASE_URL is correct
-</script>    
