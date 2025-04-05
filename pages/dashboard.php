@@ -8,4 +8,10 @@
         <img src="images/statistics.png" alt="Statistics icon">
         Data Statistics
     </button>
+
+    <button onclick="window.location.href='index.php?page=add_admin'">
+        <img src="images/system-administration.png" alt="Statistics icon">
+        Add new admin
+    </button>
+
 </div>

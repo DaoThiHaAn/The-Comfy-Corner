@@ -27,7 +27,7 @@
 
     <div class="actions">
         <a href="#">Edit Profile</a>
-        <a href="#">Change Password</a>
+        <a href="index.php?page=resetpssw">Change Password</a>
         <a href="#">Order History</a>
         <a class="logout" onclick="openLogoutDialog()">Logout</a>
     </div>

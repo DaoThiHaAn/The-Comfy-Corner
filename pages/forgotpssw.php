@@ -16,7 +16,7 @@ if  ($_SERVER['REQUEST_METHOD'] == "POST") {
             </body>
         </html>
         ";
-        if (sendEmail($email, "EXAM WEBSITE: Reset password request", $message)) {
+        if (sendEmail($email, "THE COMFY CORNER: Reset password request", $message)) {
             $_SESSION['email'] = $email;
             echo "<script>
                 document.addEventListener('DOMContentLoaded', function() {

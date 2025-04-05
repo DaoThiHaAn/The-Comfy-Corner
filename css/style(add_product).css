@@ -69,10 +69,10 @@
     background-color: #481422;
     color: white;
     border: none;
-    padding: 10px ;
+    padding: 10px 20px ;
     font-size: 16px;
     border-radius: 5px;
-    width: 30%
+    width: fit-content
 }
 
 .form-container form button:hover {
@@ -131,7 +131,11 @@
     }
 
     .form-group label {
-        font-size: 17px;
+        font-size: 16px;
+    }
+
+    .form-group input {
+        height: 15px;
     }
     
     .form-group input[type="radio"] {
@@ -143,5 +147,8 @@
         font-size: 13px;
     }
     
+    .form-container form button {
+        font-size: 15px;
+    }
     
 }
