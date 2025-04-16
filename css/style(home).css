@@ -17,7 +17,7 @@ main {
 
 /* SLIDER IMAGES */
 .slider {
-    width: 100%;
+    width: 100vw;
     height: max-content;
     position: relative;
     overflow: hidden;

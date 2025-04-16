@@ -31,4 +31,6 @@
         <a href="#">Order History</a>
         <a class="logout" onclick="openLogoutDialog()">Logout</a>
     </div>
+
+    <button class="del-btn" onclick="openDeleteDialog()">Delete account</button>
 </div>

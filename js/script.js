@@ -116,5 +116,19 @@ function confirmLogout() {
     window.location.href = "index.php?page=logout";
 }
 
+function openDeleteDialog() {
+    let contentDiv = document.querySelector('.dialog-body .content');
+    let p = document.createElement('p');
+    p.innerHTML = 'Are you sure to delete your account?<br>You can\'t undo this action! 😟';
+    contentDiv.innerHTML = p.outerHTML;
+    document.querySelector('.dialog').style.width = '25%';
+    document.querySelector('.ok-btn').onclick = confirmDelete;
+    document.querySelector('.cancel-btn').style.display = 'block';
+    document.querySelector('.dialog-container').style.display = 'flex';
+}
 
+function confirmDelete() {
+    document.querySelector('.dialog-container').style.display = 'none';
+    window.location.href = "index.php?page=delete_account";
+}
 

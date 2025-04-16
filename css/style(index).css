@@ -10,9 +10,9 @@ html, body {
 body {
     background-color: white;
     font-family: serif;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
-    width: 100%;
+    width: 100vw;
 }
 
 button {
@@ -404,7 +404,7 @@ footer a:hover {
 
 @media screen and (max-width: 769px) {
     body {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     nav {

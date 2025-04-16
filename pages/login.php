@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     if ($result->num_rows == 0) {
         echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
-            openDialog(['Your username or email does not exit!', 'Register now']);
+            openDialog(['Your username or email does not exist!', 'Register now']);
         });
         </script>";
     }
