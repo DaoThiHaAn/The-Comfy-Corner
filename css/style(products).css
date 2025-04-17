@@ -1,6 +1,12 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 .container {
     display: flex;
     flex-direction: row;
+    flex: 1;
 }
 
 
@@ -15,46 +21,37 @@
     font-weight: bold;
 }
 
-.searchbar form {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.searchbar {
     position: relative;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the search bar */
+    max-width: 400px; /* Limit the maximum width of the search bar */
+    margin: 0 auto; /* Center the search bar horizontally */
 }
 
-.searchbar input{
-    width: 80%;
+.searchbar input {
     font-size: 15px;
-    display: block;
-    padding: 10px;
-    height: 20px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 40px;
+    border-radius: 50px;
     border: thin solid rgb(167, 162, 165);
-    padding-left: 25px;
+    padding-left: 25px; /* Space for the left padding */
+    padding-right: 50px; /* Space for the icon on the right */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
-.searchbar input[type="text"]:focus {
+.searchbar input:focus {
     outline: solid 1px rgb(229, 105, 126);
 }
 
-.searchbar button {
-    border-radius: 0;
-    border: thin solid rgb(167, 162, 165);
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    height: 40px;
-    padding-left: 5px;
-    padding-right: 10px;
-}
-
-.searchbar button:hover {
-    background-color: rgb(216, 216, 216);
-}
-
 .searchbar img {
-    width: 30px;
-    height: 30px;
+    position: absolute;
+    right: -20px; /* Position the icon to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
 }
 
 /* SUGGESTION BOX */
@@ -284,6 +281,10 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.page-number a {
+    cursor: pointer;
 }
 
 .page-number img {

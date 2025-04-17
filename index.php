@@ -2,18 +2,14 @@
 session_start();
 if (!isset($_SESSION['role']))
     $_SESSION['role'] = 'guest'; // Default role for all users before logging in
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "houseware_store";
-$mydatabase = new mysqli($servername, $username, $password, $database);
+$mydatabase = new mysqli("localhost", "root", "", "houseware_store");   
 if ($mydatabase->connect_error) {
     die("Connection failed:".$mydatabase->connect_error);
 }
 
 $_SESSION['database'] = $mydatabase;
 
-// Check setup flag to initilaize the first admin account
+// Check setup flag to initialize the first admin account
 if (!defined('ADMIN_SETUP') && !file_exists(__DIR__ . "\\pages\\admin_config.php")) {
     include("pages/setup_admin.php");
 }

@@ -1,5 +1,3 @@
-const { elements } = require("chart.js");
-
 var filtersort = document.querySelector(".filter-sort");
 var filtericon = document.querySelector(".filter-icon");
 
@@ -36,21 +34,34 @@ function loadProducts(page = 1) {
     // Update URL parameters
     let params = new URLSearchParams();
     params.append("pagenum", page);
-    params.append("search", searchInput);
-    params.append("sort", sortSelect);
+    if (searchInput !== "") {
+        params.append("search", searchInput);
+    }
+    if (sortSelect !== "" && sortSelect !== "none") {
+        params.append("sort", sortSelect);
+    }
     categories.forEach(cat => params.append("category[]", cat));
+
+    // Update the browser's URL without reloading the page
+    const newUrl = window.location.pathname + "?page=products&" + params.toString();
+    history.replaceState(null, "", newUrl);
 
     // Fetch products from the server
     fetch("pages/products_ajax.php?" + params.toString())
-    .then(response => response.text())
-    .then(html => {
+    .then(response => response.json())
+    .then(data => {
         // insert html code into the show screen
-        document.querySelector(".product-list").innerHTML = html;
+        document.querySelector(".result").innerHTML = data.total_result;
+        document.querySelector(".product-list").innerHTML = data.products_html;
     })
     .catch(error => {
         console.error("Error loading products:", error);
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadProducts(); // Load all products by default
+});
 
 // Live search
 document.getElementById("search-input").addEventListener("input", function() {
@@ -58,18 +69,31 @@ document.getElementById("search-input").addEventListener("input", function() {
 });
 
 // Live filter
-document.querySelectorAll("input[name='category[]']").forEach(elements => {
+document.querySelectorAll("input[name='category[]']").forEach(checkbox => {
     checkbox.addEventListener("change", function() {
         loadProducts(); // Load products with the current filter
     });
 });
 
-// Prevent default form submission and use AJAX instead:
-document.getElementById("search-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    loadProducts();
-});
+// Show all btn
+document.querySelector(".showall-btn").addEventListener("click", function() {
+    // Reset search input and filters
+    document.getElementById("search-input").value = "";
+    document.querySelectorAll("input[name='category[]']").forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    loadProducts(); // Load products without any filters or search terms
+}
+);
 
+// Handle pagination clicks
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("pagination-link")) {
+        event.preventDefault(); // Prevent default link behavior
+        const page = event.target.getAttribute("data-page"); // Get the page number
+        loadProducts(page); // Load the selected page
+    }
+});
 
 
 

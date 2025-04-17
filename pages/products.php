@@ -46,35 +46,35 @@
                     </select>
                 </div>
             </div><br><br>
-        </form>
+        </>
 
-        <button class="showall-btn" onclick="window.location.href='index.php?page=products';">
+        <button class="showall-btn">
             Show All
         </button>
 
         <div>
-            <p>Results</p><hr>  <!--show the number of results-->
-            <p class="result"><?=$total_result?> products found</p>
+            <p>Results</p><hr>  
+            <!--show the number of results from AJAX-->
+            <p class="result"></p>
+            
         </div>
     </div>
 
     <section class="showscreen">
         <!-- TODO: live search --> 
-        <div class="searchbar">
-            <form id = "search-form" action="index.php?page=products" method="GET">  <!--handling form in the same file-->                               
+        <section class="searchbar">
+            <form id = "search-form">  <!--handling form in the same file-->  
                 <input type="text" id="search-input" placeholder="Input product name..." name="search" size="50"
-                     onkeyup="showResults(this.value)">
-                <button type="submit">
-                    <img src="images/search.png" alt="Search icon">
-                </button>
-
-                <!-- Suggestions dropdown -->
-                <div id="livesearch-box" class="suggestion-box"></div>
+                    onkeyup="showResults(this.value)">
+                <img src="images/search.png" alt="Search icon">
             </form>
-        </div>
-        <div class="product-list">
+            <!-- Suggestions dropdown -->
+            <div id="livesearch-box" class="suggestion-box"></div>
+        </section>
+        <section class="product-list">
+            <!-- Show the products from AJAX-->
 
-        </div>
+        </section>
     </section>
 </section>
 

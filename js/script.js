@@ -46,12 +46,17 @@ let topbtn = document.getElementById("topbtn");
 window.addEventListener("scroll", function() {
     if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
         topbtn.style.display = "block";
-        navbar.classList.add("scrolled");
 
     } else {
         topbtn.style.display = "none";
+    }
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        navbar.classList.add("scrolled");
+
+    } else {
         navbar.classList.remove("scrolled");
     }
+
 });
 
 
