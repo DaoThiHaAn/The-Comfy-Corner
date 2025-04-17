@@ -111,7 +111,7 @@ $products_html = "<section class='card-zone'>";
                 </button>";
             } else {
                 $products_html .=  "<button class='addtocart' title='Add to Cart' 
-                onclick=\"window.location.href='index.php?page=addtocart&productId=".$row['id']."'\">
+                onclick='addToCart(" . $row['id'] . ")'\">
                     <img src='images/add-cart.png' alt='Add to Cart'>
                 </button>";
             }

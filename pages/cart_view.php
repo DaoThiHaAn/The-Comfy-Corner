@@ -35,12 +35,13 @@ $result = $mydatabase->query($query);
 
     <!-- Cart Item -->
     <div class="cart-item" data-product-id="<?= $row['productId']; ?>">
-      <img src="<?= $image_path; ?>" alt="<?= $name; ?>" />
-      <div class="item-details">
-        <h3><?= $name; ?></h3>
-        <p data-price="<?= $result2['price']; ?>">Price: <?= $price; ?></p>
+      <div class="main-info">
+        <img src="<?= $image_path; ?>" alt="<?= $name; ?>" />
+        <div class="item-details">
+          <h3><?= $name; ?></h3>
+          <p data-price="<?= $result2['price']; ?>">Price: <?= $price; ?></p>
+        </div>
       </div>
-
       <div>
         <div class="item-actions">
           <input type="number" value="<?= $number; ?>" min="1" onchange="updateQuantity(<?= $row['productId']; ?>, this)" />

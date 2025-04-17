@@ -103,3 +103,26 @@ document.addEventListener("click", function (event) {
         loadProducts(page); // Load the selected page
     }
 });
+
+function addToCart(productId) {
+    fetch("pages/add2cart_ajax.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `productId=${productId}`,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert(data.message); // Show success message
+            } else {
+                alert(data.message); // Show error message
+            }
+        })
+        .catch((error) => {
+            console.error("Error adding to cart:", error);
+            alert("An error occurred while adding the product to the cart.");
+        });
+}
+
