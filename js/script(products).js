@@ -24,7 +24,7 @@ function loadProducts(page = 1) {
     const searchInput = document.getElementById("search-input").value.trim();
     const sortSelect = document.querySelector("select[name='sort']").value;
 
-    // get selected categories from checkboxes
+    // Get selected categories from checkboxes
     const categoryCheckboxes = document.querySelectorAll("input[name='category[]']:checked");
     let categories = [];
     categoryCheckboxes.forEach(checkbox => {
@@ -32,34 +32,43 @@ function loadProducts(page = 1) {
     });
 
     // Update URL parameters
-    let params = new URLSearchParams();
-    params.append("pagenum", page);
+    let params = new URLSearchParams(window.location.search);
+    params.set("pagenum", page);
     if (searchInput !== "") {
-        params.append("search", searchInput);
+        params.set("search", searchInput);
     }
     if (sortSelect !== "" && sortSelect !== "none") {
-        params.append("sort", sortSelect);
+        params.set("sort", sortSelect);
     }
-    categories.forEach(cat => params.append("category[]", cat));
+    params.delete("category[]"); // Remove existing category[] parameters
+    categories.forEach(cat => params.append("category[]", cat)); // Add selected categories
 
     // Update the browser's URL without reloading the page
-    const newUrl = window.location.pathname + "?page=products&" + params.toString();
+    const newUrl = window.location.pathname + "?" + params.toString();
     history.replaceState(null, "", newUrl);
 
     // Fetch products from the server
     fetch("pages/products_ajax.php?" + params.toString())
-    .then(response => response.json())
-    .then(data => {
-        // insert html code into the show screen
-        document.querySelector(".result").innerHTML = data.total_result;
-        document.querySelector(".product-list").innerHTML = data.products_html;
-    })
-    .catch(error => {
-        console.error("Error loading products:", error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            // Insert HTML code into the show screen
+            document.querySelector(".result").innerHTML = data.total_result;
+            document.querySelector(".product-list").innerHTML = data.products_html;
+        })
+        .catch(error => {
+            console.error("Error loading products:", error);
+        });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Check checkboxes based on URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const selectedCategories = params.getAll("category[]");
+    document.querySelectorAll("input[name='category[]']").forEach(checkbox => {
+        if (selectedCategories.includes(checkbox.value)) {
+            checkbox.checked = true;
+        }
+    });
     loadProducts(); // Load all products by default
 });
 
@@ -94,8 +103,3 @@ document.addEventListener("click", function (event) {
         loadProducts(page); // Load the selected page
     }
 });
-
-
-
-
-

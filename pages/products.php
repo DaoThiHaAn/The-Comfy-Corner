@@ -13,13 +13,15 @@
                 <p> Categories</p>
                 <div class="filter-category">
                     <?php
+                        $selected_categories = isset($_GET['category']) ? $_GET['category'] : []; // Get selected categories from the URL
                         $categories = $mydatabase->query("SELECT * FROM category");
                         while ($category = $categories->fetch_assoc()) {
                             $category_name = $category['name'];
                             $category_id = $category['id'];
+                            $is_checked = in_array($category_id, $selected_categories) ? "checked" : ""; // Check if the category is selected
                     ?>
                     <div>  <!-- Create a checkbox for each category and an array for category selection -->
-                        <input type="checkbox" name="<?="category[]"?>" value="<?=$category_id?>">
+                        <input type="checkbox" name="category[]" value="<?=$category_id?>" <?=$is_checked?>>
                         <label><?php echo ucfirst($category_name); ?></label>
                     </div>
                     <?php } ?>
@@ -64,8 +66,7 @@
         <!-- TODO: live search --> 
         <section class="searchbar">
             <form id = "search-form">  <!--handling form in the same file-->  
-                <input type="text" id="search-input" placeholder="Input product name..." name="search" size="50"
-                    onkeyup="showResults(this.value)">
+                <input type="text" id="search-input" placeholder="Input product name..." name="search" size="50">
                 <img src="images/search.png" alt="Search icon">
             </form>
             <!-- Suggestions dropdown -->
