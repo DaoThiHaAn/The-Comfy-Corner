@@ -253,7 +253,7 @@
     font-size: 14px;
 }
 
-.applybtn {
+.showall-btn {
     height: 30px;
     width: 80px;
     background-color: rgb(253, 178, 79);
@@ -261,23 +261,14 @@
     font-size: 14px;
     font-weight: bold;
     border: 1.5px solid rgb(107, 74, 14);
-}
-
-.applybtn:hover {
-    background-color: rgb(247, 151, 27);
-}
-
-.showall-btn {
-    height: 30px;
-    width: 160px;
-    color: rgb(54, 52, 50);
-    font-size: 14px;
-    border: 1px solid rgb(47, 43, 36);
+    width: 90px;
+    font-size: 13px;
 }
 
 .showall-btn:hover {
-    background-color: rgb(202, 202, 202);
+    background-color: rgb(247, 151, 27);
 }
+
 
 .result {
     font-size: 19px;
@@ -412,15 +403,6 @@
     }
 
     .sort-option select {
-        font-size: 13px;
-    }
-
-    .applybtn {
-        font-size: 13px;
-    }
-
-    .showall-btn {
-        width: 90px;
         font-size: 13px;
     }
     

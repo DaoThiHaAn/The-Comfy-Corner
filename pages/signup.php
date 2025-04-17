@@ -34,7 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $mydatabase->prepare("INSERT INTO account (fname, lname, email, username, password, role) VALUES (?, ?, ?, ?, ?, \"user\")");
         $stmt->bind_param("sssss", $fname, $lname, $email, $username, $hashed_password);
-        if ($stmt->execute()) { 
+        if ($stmt->execute()) {
+            // create cart
+            $stmt = $mydatabase->prepare("INSERT INTO cart (username) VALUES (?)");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
             $message = "
             <h2>Welcome to The Comfy Corner!</h2>
             <p>Hi <b>$fname</b>,</p>

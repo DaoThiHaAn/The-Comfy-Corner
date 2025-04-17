@@ -319,7 +319,7 @@ main {
     align-items: center;
 }
 
-.ok-btn {
+.ok-btn, .signin-btn-dialog {
     background-color: var(--dark-pink);
     color: white;
     font-weight: bold;
@@ -331,9 +331,14 @@ main {
     width: 50px;
 }
 
-.ok-btn:hover {
+.ok-btn:hover, .signin-btn-dialog:hover {
     background-color: #a57488;
 }
+
+.signin-btn-dialog {
+    display: none;
+}
+
 
 .cancel-btn {
     color: grey;
@@ -350,6 +355,7 @@ main {
 .cancel-btn:hover {
     background-color: rgb(219, 218, 218);
 }
+
 
 /* Footer */    
 footer {

@@ -15,6 +15,7 @@ main {
     align-items: center;
     gap: 20px;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 .profile-header {
@@ -36,6 +37,8 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .profile-info label {
@@ -44,7 +47,7 @@ main {
     flex: 3;
 }
 
-.profile-info p {
+.profile-info p, input {
     margin: 5px 0 0;
     color: #555;
     flex:5;
@@ -58,7 +61,7 @@ main {
     display: flex;
 }
 
-.actions a {
+.actions a, .save-btn {
     display: inline-block;
     text-decoration: none;
     color: white;
@@ -68,8 +71,12 @@ main {
     border-radius: 5px;
 }
 
-.actions a:hover {
+.actions a:hover, .save-btn:hover {
     background-color: var(--salmon-pink);
+}
+
+.save-btn {
+    border: none;
 }
 
 .actions .logout {
@@ -103,6 +110,23 @@ main {
     color: white;
     border-radius: 5px;
     padding: 5px 10px;
+}
+
+/* FORM */
+form {
+    width: 100%;
+}
+
+form input {
+    height: 30px;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+form input:focus {
+    border: 2px solid var(--dark-pink);
+    outline: none;
 }
 
 @media screen and (max-width: 768px) {

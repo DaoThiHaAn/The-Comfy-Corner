@@ -132,3 +132,16 @@ function confirmDelete() {
     window.location.href = "index.php?page=delete_account";
 }
 
+function openLoginRequiredDialog() {
+    let header = document.querySelector('.dialog-header');
+    header.textContent = 'Login Required!';
+    let contentDiv = document.querySelector('.dialog-body .content');
+    let p = document.createElement('p');
+    p.innerHTML = 'Log in to add this product to your cart.<br>Please log in to continue.';
+    contentDiv.innerHTML = p.outerHTML;
+    document.querySelector('.dialog').style.width = '25%';
+    document.querySelector('.signin-btn-dialog').style.display = 'block';
+    document.querySelector('.ok-btn').style.display = 'none';
+    document.querySelector('.cancel-btn').style.display = 'block';
+    document.querySelector('.dialog-container').style.display = 'flex';
+}

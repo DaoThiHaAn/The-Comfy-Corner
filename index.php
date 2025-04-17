@@ -87,27 +87,20 @@ function fetchUsername($loginname):string {
             const base_url = "<?php echo $base_url; ?>";
             console.log("BASE_URL:", base_url); // Debugging to check if BASE_URL is correct
         </script>    
-        <script src="js/script.js" defer></script>
 
 
     <!-- Link the needed css file for selected page-->
         <?php
         if (in_array($page, ['login', 'signup', 'forgotpssw','resetpssw']))
             $css_page = 'form';
+        else if ($page == 'edit_profile')
+            $css_page = 'profile';
         else
             $css_page = $page;
         if (file_exists("css/style($css_page).css")) {
             echo "<link rel='stylesheet' href='css/style($css_page).css'>";
         }
-        if (isset($_GET['tab'])) {
-            echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
-            echo "<script src='js/script({$_GET['tab']}).js' defer></script>";
-        } else {
-            echo "<script src='js/script($css_page).js' defer></script>";
-        }
-
         ?>
-        <script src="js/script(<?=$css_page?>).js" defer></script>
     </head>
 
     <body>
@@ -132,10 +125,11 @@ function fetchUsername($loginname):string {
                 <h3 class="dialog-header">WARNING!</h3>
 
                 <div class="dialog-body">
-                    <div class="content"></div>
+                    <div class="content"></div>  <!-- Insert dialog content here -->
                     <div class="dialog-btn">
                         <button class="cancel-btn" onclick="closeDialog()">Cancel</button>
                         <button class="ok-btn" onclick="closeDialog()">OK</button>
+                        <button class="signin-btn-dialog" onclick="window.location.href='index.php?page=login'">Sign in</button>
                     </div>
                 </div>
             </div>
@@ -145,4 +139,14 @@ function fetchUsername($loginname):string {
 
     </body>
 </html>
+<script src="js/script.js"></script>
+<?php
+if (isset($_GET['tab'])) {
+    echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
+    echo "<script src='js/script({$_GET['tab']}).js'></script>";
+} else {
+    echo "<script src='js/script($css_page).js'></script>";
+}
+?>
+
 
