@@ -81,7 +81,8 @@ $products_html = "<section class='card-zone'>";
             $name = $row['name'];
             $price = number_format($row['price'], 0, '.', ',');
             $type_name = $mydatabase->query("SELECT name FROM category WHERE id = " .$row['category_id'])->fetch_assoc()['name']; //get the type name from category table
-            $image_path = "images/$type_name/" .$row['image'];                    
+            $image_path = "images/$type_name/" .$row['image'];  
+            $stock_quantity = $row['stock_quantity'];                  
 
     $products_html .= "
     <div class='card'>
@@ -104,10 +105,16 @@ $products_html = "<section class='card-zone'>";
             </button>";
         }
         else if ($_SESSION['role'] == 'user') {
-            $products_html .=  "<button class='addtocart' title='Add to Cart' 
-        onclick=\"window.location.href='index.php?page=addtocart&productId=".$row['id']."'\">
-                <img src='images/add-cart.png' alt='Add to Cart'>
-            </button>";
+            if ($stock_quantity == 0) {
+                $products_html .= "<button class='outofstock-btn' title='Out of Stock' disabled>
+                    ❌ Out of stock
+                </button>";
+            } else {
+                $products_html .=  "<button class='addtocart' title='Add to Cart' 
+                onclick=\"window.location.href='index.php?page=addtocart&productId=".$row['id']."'\">
+                    <img src='images/add-cart.png' alt='Add to Cart'>
+                </button>";
+            }
         }
         $products_html .= "</div>
     </div>";

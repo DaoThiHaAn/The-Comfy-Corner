@@ -88,7 +88,7 @@ if ($_SESSION['role'] == 'admin') {
 
         <?php if ($_SESSION['role'] == 'user') { ?>
         <div class="cart-navbar">
-            <button class="cart-btn <?=($page=='cart')?'active':''?>" onclick="window.location.href='index.php?page=cart'" title="Click to view your cart">
+            <button class="cart-btn <?=($page=='cart')?'active':''?>" onclick="window.location.href='index.php?page=cart_view'" title="Click to view your cart">
                 <img class="cart" src="images/cart.png" alt="Cart icon">
             </button>
         </div>

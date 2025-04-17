@@ -164,6 +164,17 @@ main {
     font-weight: bold;
 }
 
+.outofstock-btn {
+    height: 30px;
+    color: red;
+    border: none;
+    background-color: rgb(228, 213, 218);
+    width: 100%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    cursor: not-allowed;
+}
+
 .addtocart {
     background-color: rgb(228, 213, 218);
     border-bottom-right-radius: 20px;

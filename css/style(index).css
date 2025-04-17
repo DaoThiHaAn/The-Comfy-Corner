@@ -337,6 +337,7 @@ main {
 
 .signin-btn-dialog {
     display: none;
+    width: 100px;
 }
 
 

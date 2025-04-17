@@ -1,10 +1,10 @@
 .container {
     max-width: 1000px;
-    margin: 40px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin: auto;
   }
 
   h1 {
@@ -66,6 +66,23 @@
     background-color: #c0392b;
   }
 
+  .item-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--dark-pink);
+    margin-top: 15px;
+  }
+
+  input {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: rgb(50, 50, 50);
+  }
+  input:focus {
+    outline: none;
+    border: 2px solid var(--dark-pink);
+  }
   .cart-summary {
     text-align: right;
     margin-top: 30px;
@@ -77,7 +94,7 @@
   }
 
   .checkout-btn {
-    background-color: #5f85db;
+    background-color: var(--dark-pink);
     color: white;
     padding: 12px 25px;
     font-size: 1rem;
@@ -88,7 +105,7 @@
   }
 
   .checkout-btn:hover {
-    background-color: #3d6cd8;
+    background-color: rgb(251, 154, 170);
   }
 
   @media (max-width: 700px) {

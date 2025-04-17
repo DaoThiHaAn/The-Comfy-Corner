@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $username_email = $password = "";
 if ($_SERVER["REQUEST_METHOD"] =="POST") {
     $username_email = test_input($_POST["uname-email"]);
@@ -20,10 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         $result = $result->fetch_assoc();
         $hashed_password = $result["password"];
         if (password_verify($password, $hashed_password)) {
-            echo "<script>console.log('Login successfully!');</script>";
             $_SESSION['username'] = $result["username"]; // Store the username in session
             $_SESSION['role'] = $result["role"]; // Set the role to 'user' after login
-            echo "<script>window.location.href = 'index.php?page=home';</script>";
+            if ($result["role"]== 'user') {
+                $_SESSION['cartId'] = $mydatabase->query("SELECT id FROM cart WHERE username = '{$_SESSION['username']}'")->fetch_assoc()['id'];
+            }
+
+            echo "<script>
+            console.log('Login successfully!');
+            window.location.href = 'index.php?page=home';
+            </script>";
         }
         else {
             echo "<script>
