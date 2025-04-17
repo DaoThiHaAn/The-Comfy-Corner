@@ -72,6 +72,10 @@ function fetchUsername($loginname):string {
         <link rel="stylesheet" href="css/style(index).css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick Hand">
 
+        <?php
+        if (isset($_GET['tab'])) {
+            echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
+        } ?>
 
     <!-- SEO -->
         <meta name="description" content="The Comfy Corner - One-stop shop for all your homeware needs. Discover a wide range of products to make your home cozy and stylish.">
@@ -138,9 +142,10 @@ function fetchUsername($loginname):string {
 <script src="js/script.js"></script>
 <?php
 if (isset($_GET['tab'])) {
-    echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
     echo "<script src='js/script({$_GET['tab']}).js'></script>";
 } else {
+    if ($page == 'detail')
+        echo "<script src='js/script(products).js'></script>";
     echo "<script src='js/script($css_page).js'></script>";
 }
 ?>

@@ -105,17 +105,32 @@ document.addEventListener("click", function (event) {
 });
 
 function addToCart(productId) {
+    // Dynamically get the quantity input field based on the product ID
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1; // Default to 1 if input is not found
+
+    // Validate the quantity
+    if (isNaN(quantity) || quantity < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+
     fetch("pages/add2cart_ajax.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `productId=${productId}`,
+        body: `productId=${productId}&quantity=${quantity}`,
     })
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
                 alert(data.message); // Show success message
+                // Optionally update the stock dynamically
+                const stockElement = document.querySelector(`#stock-${productId}`);
+                if (stockElement) {
+                    stockElement.innerText = `Stock: ${data.remainingStock}`;
+                }
             } else {
                 alert(data.message); // Show error message
             }

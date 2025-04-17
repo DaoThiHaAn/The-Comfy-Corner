@@ -12,10 +12,28 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'user') {
     exit;
 }
 
-// Check if the product ID is provided
-if (isset($_POST['productId'])) {
+// Check if the product ID and quantity are provided
+if (isset($_POST['productId']) && isset($_POST['quantity'])) {
     $productId = intval($_POST['productId']); // Sanitize the product ID
+    $quantity = intval($_POST['quantity']); // Sanitize the quantity
     $cartId = $_SESSION['cartId']; // Get the cart ID from the session
+
+    // Check if the product exists and has sufficient stock
+    $stockQuery = "SELECT stock_quantity FROM product WHERE id = ?";
+    $stockStmt = $mydatabase->prepare($stockQuery);
+    $stockStmt->bind_param("i", $productId);
+    $stockStmt->execute();
+    $stockResult = $stockStmt->get_result()->fetch_assoc();
+
+    if (!$stockResult) {
+        echo json_encode(["success" => false, "message" => "Product not found."]);
+        exit;
+    }
+
+    if ($stockResult['stock_quantity'] < $quantity) {
+        echo json_encode(["success" => false, "message" => "Insufficient stock available."]);
+        exit;
+    }
 
     // Check if the product is already in the cart
     $checkCartQuery = "SELECT * FROM user_cart WHERE cartId = ? AND productId = ?";
@@ -26,22 +44,28 @@ if (isset($_POST['productId'])) {
 
     if ($result->num_rows > 0) {
         // If the product is already in the cart, increment the quantity
-        $updateQuery = "UPDATE user_cart SET quantity = quantity + 1 WHERE cartId = ? AND productId = ?";
+        $updateQuery = "UPDATE user_cart SET quantity = quantity + ? WHERE cartId = ? AND productId = ?";
         $updateStmt = $mydatabase->prepare($updateQuery);
-        $updateStmt->bind_param("ii", $cartId, $productId);
+        $updateStmt->bind_param("iii", $quantity, $cartId, $productId);
         $updateStmt->execute();
     } else {
         // If the product is not in the cart, insert it
-        $insertQuery = "INSERT INTO user_cart (cartId, productId, quantity) VALUES (?, ?, 1)";
+        $insertQuery = "INSERT INTO user_cart (cartId, productId, quantity) VALUES (?, ?, ?)";
         $insertStmt = $mydatabase->prepare($insertQuery);
-        $insertStmt->bind_param("ii", $cartId, $productId);
+        $insertStmt->bind_param("iii", $cartId, $productId, $quantity);
         $insertStmt->execute();
     }
 
-    echo json_encode(["success" => true, "message" => "Product added to cart successfully."]);
+    // Update the stock quantity in the product table
+    $updateStockQuery = "UPDATE product SET stock_quantity = stock_quantity - ? WHERE id = ?";
+    $updateStockStmt = $mydatabase->prepare($updateStockQuery);
+    $updateStockStmt->bind_param("ii", $quantity, $productId);
+    $updateStockStmt->execute();
+
+    echo json_encode(["success" => true, "message" => "Product added to cart successfully.", "remainingStock" => $stockResult['stock_quantity'] - $quantity]);
     exit;
 } else {
-    echo json_encode(["success" => false, "message" => "Product ID is missing."]);
+    echo json_encode(["success" => false, "message" => "Invalid request."]);
     exit;
 }
 ?>
