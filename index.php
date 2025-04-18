@@ -72,6 +72,7 @@ function fetchUsername($loginname):string {
         <link rel="stylesheet" href="css/style(index).css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick Hand">
         <script src="https://kit.fontawesome.com/e38d7f03e0.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
         <?php
         if (isset($_GET['tab'])) {
@@ -149,11 +150,10 @@ function fetchUsername($loginname):string {
 <?php
 if (isset($_GET['tab'])) {
     echo "<script src='js/script({$_GET['tab']}).js'></script>";
-} else {
-    if ($page == 'detail')
-        echo "<script src='js/script(products).js'></script>";
-    echo "<script src='js/script($css_page).js'></script>";
 }
+if ($page == 'detail')
+        echo "<script src='js/script(products).js'></script>";
+echo "<script src='js/script($css_page).js'></script>";
 ?>
 
 

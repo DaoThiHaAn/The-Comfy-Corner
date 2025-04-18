@@ -46,7 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("sdissi", $name, $price, $stock_quantity, $img_file_name, $description, $category_id);
     
     if ($stmt->execute()) {
-        echo "<script>openDialog(['Product inserted successfully!'], 'Success!')</script>";
+        echo "<script>
+        window.addEventListener('DOMContentLoaded', function() {
+            openDialog(['Product inserted successfully!'], 'Success!');
+        });
+        </script>";
     } else {
         echo "<script>
         alert('Error: ".$mydatabase->error."\nPlease try again! 🥲');

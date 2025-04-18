@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
         $description = $product['description'];
         $category_id = $product['category_id'];
     } else {
-        echo "<script>alert('Product not found!'); window.location.href='view_all_products.php';</script>";
+        echo "<script>alert('Product not found!'); window.location.href='index.php?page=prductmgnt&tab=view_all_products.php';</script>";
         exit;
     }
 }
@@ -38,7 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("sdissii", $name, $price, $stock_quantity, $img_file_name, $description, $category_id, $product_id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Product updated successfully!'); window.location.href='view_all_products.php';</script>";
+        echo "<script>
+        window.addEventListener('DOMContentLoaded', function() {
+            openDialog(['Product updated successfully!'], 'Success!');
+        });
+        </script>";
     } else {
         echo "<script>alert('Error updating product: {$mydatabase->error}');</script>";
     }
@@ -48,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-container">
     <h2>Edit Product</h2>
 
-    <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']) . '?id=' . $product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
+    <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']) . '?page=edit_product&id=' . $product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="product_name">Product Name: <span style="color: red;">*</span></label>
             <input type="text" id="product_name" name="product_name" placeholder="Product Name"
@@ -85,15 +89,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label class="label" for="product_image">Product Image:</label>
             <input type="file" id="product_image" name="product_image" accept="image/*">
-            <?php if (!empty($img_file_name)): ?>
-                <img id="file-preview" src="images/<?=$img_file_name?>" style="max-width:100px;" alt="Product Image">
+            <?php if (!empty($img_file_name) || $img_file_name !== ''):
+                $type_name = $mydatabase->query("SELECT name FROM category WHERE id = $category_id")->fetch_assoc()['name'];
+                $image_path = "images/" . strtolower($type_name) . "/" .$img_file_name;
+            ?>
+            <div class="image-preview">
+                <img id="file-preview" src="<?=$image_path?>" alt="Product Image">
+                <p>Current Image: <i><?=$img_file_name?></i></p>
+            </div>
             <?php endif; ?>
         </div>
 
         <div class="editor-group">
             <label class="label">Product Description</label>
             <!-- Use Quill.js for rich text editor (must set id="editor")-->
-            <div id="editor"><?=$description?></div>
+            <div id="editor"><?=htmlspecialchars($description)?></div>
         </div>
 
         <!-- Hidden field to store the editor content -->

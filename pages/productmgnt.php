@@ -19,9 +19,11 @@
 
     <section class="action-screen">
         <?php
-        if (isset($_GET['tab'])) {
-            include $_GET['tab'] . '.php';
-        } 
+        // Set default tab to 'view_all_products' if 'tab' is not set
+        $tab = isset($_GET['tab']) ? $_GET['tab'] : 'view_all_products';
+
+        // Include the corresponding file
+        include $tab . '.php';
         ?>
-    </section>    
+    </section>   
 </section>

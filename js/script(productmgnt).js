@@ -4,3 +4,14 @@ function toggleDrawer() {
       drawer.classList.toggle('active');
     }
   }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Check if the 'tab' parameter is missing in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has('tab')) {
+        // Add 'tab=view_all_products' to the URL without reloading the page
+        urlParams.set('tab', 'view_all_products');
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+        window.history.replaceState(null, '', newUrl);
+    }
+});

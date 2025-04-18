@@ -44,12 +44,34 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         }
     });
+
+    const descriptionContent = document.getElementById('description').value;
+    if (descriptionContent) {
+        try {
+            // If the content is stored as Quill Delta JSON, parse and load it
+            quill.setContents(JSON.parse(descriptionContent));
+        } catch (e) {
+            // If the content is stored as HTML, set it as innerHTML
+            quill.root.innerHTML = descriptionContent;
+        }
+    }
   
     // Handle form submission: save the HTML output into the hidden input
-    const form = document.querySelector('.add-form');
-    form.addEventListener('submit', function() {
-        document.getElementById('description').value = quill.root.innerHTML;
-    });
+    const addform = document.querySelector('.add-form');
+    if (addform) {
+        addform.addEventListener('submit', function() {
+            document.getElementById('description').value = quill.root.innerHTML;
+        });
+    }
+
+    // Handle form submission: save the HTML output into the hidden input
+    const editform = document.querySelector('.edit-form');
+    if (editform) {
+        editform.addEventListener('submit', function() {
+            document.getElementById('description').value = quill.root.innerHTML;
+        });
+    }
+    
 });
 
 var product_image = document.getElementById("product_image");

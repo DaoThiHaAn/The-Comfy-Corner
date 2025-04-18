@@ -68,10 +68,10 @@ while ($row = $products->fetch_assoc()) {
                     <a href='index.php?page=edit_product&id={$row['id']}' class='btn modify' title='Edit'>
                         <i class='fa-regular fa-pen-to-square'></i>
                     </a>
-                    <a href='delete_product.php?id={$row['id']}' class='btn delete' onclick='return confirm(\"Delete this product?\")' title='Delete'>
+                    <a class='btn delete' onclick=\"deleteProduct(event, " . $row['id'] . ")\" title='Delete'>
                         <i class='fa-solid fa-trash'></i>
                     </a>
-                </td>
+                </td>   
               </tr>";
     $i++;
 }

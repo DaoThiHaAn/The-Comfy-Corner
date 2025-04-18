@@ -4,6 +4,7 @@
 
 h2 {
     margin-bottom: 20px;
+    color: var(--dark-pink);
 }
 
 table {
@@ -80,6 +81,49 @@ img {
     color: #fff;
 }
 
+/* Style the search and filter container */
+.search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px auto;
+    align-items: center;
+    width: 50%;
+    align-items: center;
+}
+
+/* Style the search input */
+.search-filter input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-filter input[type="text"]:focus {
+    border: 2px solid var(--dark-pink);
+}
+
+/* Style the category dropdown */
+.search-filter select {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+
+.search-filter select:focus {
+    border: 2px solid var(--dark-pink);
+}
+
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 15px;
@@ -87,6 +131,16 @@ img {
 
     h2 {
         font-size: 1.5rem;
+    }
+
+    .search-filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-filter input[type="text"],
+    .search-filter select {
+        width: 100%;
     }
 
     table {
