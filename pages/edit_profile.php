@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
     <div class="profile-header">
         <h2>Profile Information</h2>
-        <h4><?php echo htmlspecialchars($_SESSION['username']); ?></h4>
         <p>Role: <?= htmlspecialchars($_SESSION['role']); ?></p>
     </div>
 
@@ -59,11 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label>Last Name:</label>
         <input type="text" name="lname" maxlength="255"
         value="<?php echo htmlspecialchars($result['lname']); ?>">
-    </div>
-
-    <div class="profile-info">
-        <label>Email:</label>
-        <p><?php echo htmlspecialchars($result['email']); ?></p>
     </div>
 
     <button type="submit" class="save-btn">

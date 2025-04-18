@@ -71,6 +71,7 @@ function fetchUsername($loginname):string {
 
         <link rel="stylesheet" href="css/style(index).css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick Hand">
+        <script src="https://kit.fontawesome.com/e38d7f03e0.js" crossorigin="anonymous"></script>
 
         <?php
         if (isset($_GET['tab'])) {
@@ -95,6 +96,11 @@ function fetchUsername($loginname):string {
             $css_page = 'form';
         else if ($page == 'edit_profile')
             $css_page = 'profile';
+        else if ($page == 'edit_product') {
+            $css_page = $page;
+            echo "<link rel='stylesheet' href='css/style(add_product).css'>";
+            echo "<script src='js/script(add_product).js' defer></script>";
+        }
         else
             $css_page = $page;
         if (file_exists("css/style($css_page).css")) {

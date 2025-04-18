@@ -11,7 +11,7 @@
 
     <button onclick="window.location.href='index.php?page=add_admin'">
         <img src="images/system-administration.png" alt="Statistics icon">
-        Add new admin
+        Manage Users
     </button>
 
 </div>

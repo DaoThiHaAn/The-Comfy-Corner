@@ -6,8 +6,12 @@
 <section class="profile-container">
     <div class="profile-header">
         <h2>Profile Information</h2>
-        <h4><?php echo htmlspecialchars($_SESSION['username']); ?></h4>
         <p>Role: <?= htmlspecialchars($_SESSION['role']); ?></p>
+    </div>
+
+    <div class="profile-info">
+        <label>Username:</label>
+        <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
     </div>
 
     <div class="profile-info">
@@ -28,7 +32,6 @@
     <div class="actions">
         <a href="index.php?page=edit_profile">Edit Profile</a>
         <a href="index.php?page=resetpssw">Change Password</a>
-        <a href="#">Order History</a>
         <a class="logout" onclick="openLogoutDialog()">Logout</a>
     </div>
 

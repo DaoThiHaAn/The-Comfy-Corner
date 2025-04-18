@@ -19,52 +19,41 @@ $products = $stmt->get_result();
 ?>
 
 <section class="container">
-        <h2>Product Management</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price (VND)</th>
-                    <th>Stock</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= htmlspecialchars($row['category_name']) ?></td>
-                        <td><?= number_format($row['price']) ?></td>
-                        <td><?= $row['stock_quantity'] ?></td>
-                        <td>
-                            <?php if (!empty($row['image'])): ?>
-                                <img src="uploads/<?= $row['image'] ?>" alt="Product Image" style="max-width: 60px;">
-                            <?php else: ?>
-                                No image
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn modify">Modify</a>
-                            <a href="delete_product.php?id=<?= $row['id'] ?>" class="btn delete" onclick="return confirm('Delete this product?')">Delete</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+    <h2>Product Management</h2>
 
-        <div class="pagination">
-            <?php if ($page > 1): ?>
-                <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
-            <?php endif; ?>
-            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
-            <?php endfor; ?>
-            <?php if ($page < $total_pages): ?>
-                <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
-            <?php endif; ?>
-        </div>
+    <!-- Search and Filter -->
+    <div class="search-filter">
+        <input type="text" id="search" placeholder="Search by product name..." oninput="fetchProducts()">
+        <select id="category" onchange="fetchProducts()">
+            <option value="all">All Categories</option>
+            <?php
+            $categories = $mydatabase->query("SELECT * FROM category");
+            while ($cat = $categories->fetch_assoc()) {
+                echo "<option value='{$cat['id']}'>" . htmlspecialchars($cat['name']) . "</option>";
+            }
+            ?>
+        </select>
+    </div>
+
+    <!-- Products Table -->
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price (VND)</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="products-table">
+            <!-- Products will be loaded here via AJAX -->
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+        <!-- Pagination will be loaded here via AJAX -->
+    </div>
 </section>

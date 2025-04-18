@@ -39,12 +39,27 @@ img {
     margin: 0 2px;
 }
 
+.action-btn {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .modify {
     background-color: #27ae60;
 }
 
+.modify:hover {
+    background-color: #1e834a;
+}
+
 .delete {
     background-color: #e74c3c;
+}
+
+.delete:hover {
+    background-color: #952d21;
 }
 
 .pagination {

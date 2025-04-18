@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']).'?page=productmgnt&tab=add_product'?>" class="add-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="product_name">Product Name: <span style="color: red;">*</span></label>
+            <label class="label" for="product_name">Product Name: <span style="color: red;">*</span></label>
             <input type="text" id="product_name" name="product_name" placeholder="Product Name"
                 value="<?php echo htmlspecialchars($name); ?>" maxlength="255" required>
         </div>
 
         <div class="form-group">
-            <label >Product Category: <span style="color: red;">*</span></label>
+            <label class="label">Product Category: <span style="color: red;">*</span></label>
             <div class="product-type">
                 <?php
                 $stmt = $mydatabase->query("SELECT * FROM category");
@@ -90,25 +90,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         <div class="form-group">
-            <label for="product_price">Product Price (VND): <span style="color: red;">*</span></label>
+            <label class="label" for="product_price">Product Price (VND): <span style="color: red;">*</span></label>
             <input type="number" id="product_price" name="product_price" placeholder="Product Price" min="0" 
                 value="<?php echo htmlspecialchars($price); ?>" required>
         </div>
                 
         <div class="form-group">
-            <label for="product_quantity">Product Quantity: <span style="color: red;">*</span></label>
+            <label class="label" for="product_quantity">Product Quantity: <span style="color: red;">*</span></label>
             <input type="number" id="product_quantity" name="product_quantity" placeholder="Product Quantity" min="0" 
                 value="<?php echo htmlspecialchars($stock_quantity); ?>" required>
         </div>
 
         <div class="form-group">
-            <label for="product_image">Product Image:</label>
+            <label class="label" for="product_image">Product Image:</label>
             <input type="file" id="product_image" name="product_image" accept="image/*">
             <img id="file-preview" style="max-width:100px; display:none;" alt="Image preview">
         </div>
 
         <div class="editor-group">
-            <label>Product Description</label>
+            <label class="label">Product Description</label>
             <!-- Use Quill.js for rich text editor (must set id="editor")-->
             <div id="editor"></div>
         </div>

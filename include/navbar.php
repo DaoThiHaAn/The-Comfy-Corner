@@ -48,11 +48,11 @@ if ($_SESSION['role'] == 'admin') {
             ?>
         </div>
     </div>
-
+    <?php } ?>
     <div>
         <a href="index.php?page=contact" class="<?=($page=='contact')?'active':''?>">Contact</a>
     </div>
-    <?php } ?>
+
     
     <?php if ($_SESSION['role'] == 'guest') {?>
     <section class="signinup-btn">
