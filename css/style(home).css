@@ -27,11 +27,12 @@ main {
 .slides {
     display: flex;
     transition: transform 1s linear; /* Linear slide transition */
+    width: calc(100vw * 5); /* Adjust based on the number of slides */
 }
 
 /* Set each image to fill the slider fully */
 .slides img {
-    min-width: 100%;
+    min-width: 100vw;
     object-fit: cover;
 }
 

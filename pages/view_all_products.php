@@ -23,7 +23,7 @@ $products = $stmt->get_result();
 
     <!-- Search and Filter -->
     <div class="search-filter">
-        <input type="text" id="search" placeholder="Search by product name..." oninput="fetchProducts()">
+        <input type="text" id="search" placeholder= "🔎 Search by product name..." oninput="fetchProducts()">
         <select id="category" onchange="fetchProducts()">
             <option value="all">All Categories</option>
             <?php

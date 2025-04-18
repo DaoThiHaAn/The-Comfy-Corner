@@ -90,5 +90,8 @@ if ($page < $totalPages) {
 }
 
 // Return the response as JSON
+if ($html == "") {
+    $html = "<tr><td colspan='7'>No matching products found.</td></tr>";
+}
 echo json_encode(["html" => $html, "pagination" => $pagination]);
 ?>

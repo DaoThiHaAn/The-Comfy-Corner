@@ -1,6 +1,7 @@
 <section class="mgnt-container">
-    <button class="toggle-drawer-btn" onclick="toggleDrawer()">☰ Menu</button>
-    
+    <button class="toggle-drawer-btn" id="toggle-drawer-btn">
+        <img src="images/main-menu.png" alt="Toggle Drawer">
+    </button>
     <section class="drawer">
         <img src="images/logo-text.jpg" alt="Logo" class="logo">
         <h3>Product Management</h3>

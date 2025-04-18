@@ -9,7 +9,7 @@
         Data Statistics
     </button>
 
-    <button onclick="window.location.href='index.php?page=add_admin'">
+    <button onclick="window.location.href='index.php?page=manage_user'">
         <img src="images/system-administration.png" alt="Statistics icon">
         Manage Users
     </button>

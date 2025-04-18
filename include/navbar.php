@@ -70,7 +70,7 @@ if ($_SESSION['role'] == 'admin') {
     }    
     ?>
     <section class="cart-account">
-        <div class="dropdown account-navbar">
+        <div class="dropdown account-navbar <?=$_SESSION['role'] == 'admin' ? 'admin' : ''?>">
             <a class="dropbtn account">
                 <img src="<?=$img_profile?>" alt="User icon">
                 <?=$_SESSION['username']?>

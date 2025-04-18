@@ -1,0 +1,118 @@
+.container {
+    padding: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: var(--dark-pink);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: rgb(154, 82, 15);
+    color: #fff;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+img {
+    border-radius: 6px;
+}
+
+.assign-admin {
+    border: none;
+    background-color: rgb(188, 128, 88);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.assign-admin:hover {
+    background-color: rgb(228, 167, 126);
+    color: #fff;
+}
+
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 4px;
+    padding: 6px 12px;
+    background: #ddd;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination a.active, .pagination a:hover {
+    background: rgb(234, 175, 66);
+    color: #fff;
+}
+
+/* Style the category dropdown */
+.role-filter {
+    margin: 20px;
+}
+.role-filter select {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+
+.role-filter select:focus {
+    border: 2px solid var(--dark-pink);
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .role-filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .role-filter input[type="text"],
+    .role-filter select {
+        width: 100%;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .btn {
+        padding: 4px 8px;
+    }
+    
+}

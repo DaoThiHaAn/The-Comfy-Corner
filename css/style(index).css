@@ -154,6 +154,10 @@ nav a.active, .cart-btn.active {
     display: block;
 }
 
+.account-navbar.admin {
+    margin-right: 60px;
+}
+
 .signinup-btn {
     display: flex;
     height: 33px;
