@@ -40,6 +40,16 @@ img {
     margin: 0 2px;
 }
 
+.cell-name {
+    text-decoration: none;
+    color: #333;
+    
+}
+
+.cell-name:hover {
+    text-decoration: underline;
+}
+
 .action-btn {
     display: flex;
     justify-content: center;

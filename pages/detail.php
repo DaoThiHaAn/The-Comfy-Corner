@@ -31,6 +31,8 @@
             </div>
             <p id="stock-<?=$sel_product['id']?>" class="stock">Stock: <?=$stock_quantity?></p> <!-- Display stock quantity -->
 
+
+            <?php if ($_SESSION['role'] != 'admin') {?>
             <div class="addtocart">
                 <form class="change-num">
 
@@ -42,6 +44,7 @@
                     <img src="images/add-cart.png" alt="Add to Cart">
                 </button>
             </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -54,9 +57,26 @@
 
         <div class="description-content">
             <p>
-                <?=$description?>
+                <?=nl2br($description)?>
             </p>
         </div>
     </div>
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const quillContainer = document.querySelector(".description-content");
+    const quillContent = <?= json_encode($description) ?>; // Pass the Delta JSON from PHP
+
+    const quill = new Quill(quillContainer, {
+        theme: "bubble", // Use a read-only theme
+        readOnly: true,
+        modules: {
+            toolbar: false, // Disable toolbar
+        },
+    });
+
+    quill.setContents(JSON.parse(quillContent)); // Render the Delta JSON
+});
+</script>

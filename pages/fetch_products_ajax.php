@@ -60,7 +60,7 @@ $i = $offset + 1;
 while ($row = $products->fetch_assoc()) {
     $html .= "<tr>
                 <td>{$i}</td>
-                <td>" . htmlspecialchars($row['name']) . "</td>
+                <td><a class='cell-name' href='index.php?page=detail&productId={$row['id']}'>" . htmlspecialchars($row['name']) . "</a></td>
                 <td>" . htmlspecialchars($row['category_name']) . "</td>
                 <td>" . number_format($row['price']) . "</td>
                 <td>{$row['stock_quantity']}</td>

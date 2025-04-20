@@ -2,6 +2,7 @@
 $name = $img_file_name = '';
 $category_id = $price = $stock_quantity = 0;
 $description = '';
+$previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']); // Sanitize the product ID
@@ -50,8 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <section class="form-container">
+    <div class="header-section">
+    <a href="<?=htmlspecialchars($previousPage)?>" class="back-link">⬅️ Back to Previous Page</a>
     <h2>Edit Product</h2>
-
+    </div>
     <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']) . '?page=edit_product&id=' . $product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="product_name">Product Name: <span style="color: red;">*</span></label>
@@ -103,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="editor-group">
             <label class="label">Product Description</label>
             <!-- Use Quill.js for rich text editor (must set id="editor")-->
-            <div id="editor"><?=htmlspecialchars($description)?></div>
+            <div id="editor"><?=$description?></div>
         </div>
 
         <!-- Hidden field to store the editor content -->
