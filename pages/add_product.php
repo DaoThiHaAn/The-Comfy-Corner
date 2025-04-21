@@ -33,9 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Use the selected category ID
         $category_id = intval(test_input($_POST['product_type']));
-    }
-
-    // Insert the product into the database
+            // Insert the product into the database
     $name = test_input($_POST['product_name']);
     $price = test_input($_POST['product_price']);
     $stock_quantity = test_input($_POST['product_quantity']);
@@ -56,6 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         alert('Error: ".$mydatabase->error."\nPlease try again! 🥲');
             </script>";
     }
+
+    }
+
 }
 ?>
 

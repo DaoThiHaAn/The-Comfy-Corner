@@ -123,6 +123,7 @@ $products_html .= "</section>";
 
 // Pagination
 $products_html .= "<div class='page-number'>";
+
 if ($current_page > 1) {
     $products_html .= "
         <a class='pagination-link' data-page='" . ($current_page - 1) . "'>
@@ -130,13 +131,44 @@ if ($current_page > 1) {
         </a>";
 }
 
-for ($i = 1; $i <= $total_pages; $i++) {
+$maxVisiblePages = 3; // Maximum number of visible page links
+$startPage = max(1, $current_page - floor($maxVisiblePages / 2));
+$endPage = min($total_pages, $startPage + $maxVisiblePages - 1);
+
+// Adjust the start page if the end page is too close to the total pages
+if ($endPage - $startPage + 1 < $maxVisiblePages) {
+    $startPage = max(1, $endPage - $maxVisiblePages + 1);
+}
+
+// Add the first page and ellipses if necessary
+if ($startPage > 1) {
     $products_html .= "
-    <div class='number " . (($i == $current_page) ? "active" : "") . "'>
-        <a class='pagination-link' data-page='" . $i . "'>
-            " . $i . "
-        </a>
-    </div>";
+        <div class='number'>
+            <a class='pagination-link' data-page='1'>1</a>
+        </div>";
+    if ($startPage > 2) {
+        $products_html .= "<span class='pagination-ellipsis'>...</span>";
+    }
+}
+
+// Add the visible page links
+for ($i = $startPage; $i <= $endPage; $i++) {
+    $active = ($i == $current_page) ? "active" : "";
+    $products_html .= "
+        <div class='number $active'>
+            <a class='pagination-link' data-page='$i'>$i</a>
+        </div>";
+}
+
+// Add the last page and ellipses if necessary
+if ($endPage < $total_pages) {
+    if ($endPage < $total_pages - 1) {
+        $products_html .= "<span class='pagination-ellipsis'>...</span>";
+    }
+    $products_html .= "
+        <div class='number'>
+            <a class='pagination-link' data-page='$total_pages'>$total_pages</a>
+        </div>";
 }
 
 if ($current_page < $total_pages) {
@@ -145,6 +177,7 @@ if ($current_page < $total_pages) {
             <img src='images/right-arrow.png' alt='Next'>
         </a>";
 }
+
 $products_html .= "</div>";
 }
 $products_html .= "</div>

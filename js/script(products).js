@@ -95,11 +95,10 @@ document.querySelector(".showall-btn").addEventListener("click", function() {
 }
 );
 
-// Handle pagination clicks
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("pagination-link")) {
+    if (event.target.classList.contains("pagination-link") || event.target.closest(".pagination-link")) {
         event.preventDefault(); // Prevent default link behavior
-        const page = event.target.getAttribute("data-page"); // Get the page number
+        const page = event.target.closest(".pagination-link").getAttribute("data-page"); // Get the page number
         loadProducts(page); // Load the selected page
     }
 });

@@ -30,21 +30,15 @@
             <div class="sort">
                 <p>Sort</p>
                 <div class="sort-option">
-                    <select name="sort"> <!-- "selected" attribute is used to show the selected option -->
-                        <option  value="none">
-                            None
-                        </option>
-                        <option value="name-asc">
-                            Name: A to Z</option>
-                        <option value="name-desc">
-                            Name: Z to A
-                        </option>
-                        <option value="price-asc">
-                            Price: Low to High
-                        </option>
-                        <option value="price-desc">
-                            Price: High to Low
-                        </option>
+                    <select name="sort" id="sort" onchange="loadProducts()">
+                        <?php
+                        $current_sort = isset($_GET['sort']) ? $_GET['sort'] : 'none'; // Get the current sort value from the URL
+                        ?>
+                        <option value="none" <?= $current_sort === 'none' ? 'selected' : '' ?>>None</option>
+                        <option value="name-asc" <?= $current_sort === 'name-asc' ? 'selected' : '' ?>>Name: A to Z</option>
+                        <option value="name-desc" <?= $current_sort === 'name-desc' ? 'selected' : '' ?>>Name: Z to A</option>
+                        <option value="price-asc" <?= $current_sort === 'price-asc' ? 'selected' : '' ?>>Price: Low to High</option>
+                        <option value="price-desc" <?= $current_sort === 'price-desc' ? 'selected' : '' ?>>Price: High to Low</option>
                     </select>
                 </div>
             </div><br><br>

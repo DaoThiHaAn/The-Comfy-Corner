@@ -10,8 +10,11 @@ if ($mydatabase->connect_error) {
 $search = isset($_GET['search']) ? "%" . $mydatabase->real_escape_string($_GET['search']) . "%" : "%%";
 $category = isset($_GET['category']) && $_GET['category'] !== "all" ? intval($_GET['category']) : null;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
-$limit = 20; // Products per page
+$limit = 10; // Products per page
 $offset = ($page - 1) * $limit;
+
+// Get sorting parameter
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'none';
 
 // Build the query
 $query = "SELECT p.*, c.name as category_name FROM product p 
@@ -25,7 +28,26 @@ if ($category) {
     $params[] = $category;
 }
 
-$query .= " ORDER BY p.id DESC LIMIT ? OFFSET ?";
+// Modify the query based on the sorting option
+switch ($sort) {
+    case 'name-asc':
+        $query .= " ORDER BY p.name ASC";
+        break;
+    case 'name-desc':
+        $query .= " ORDER BY p.name DESC";
+        break;
+    case 'price-asc':
+        $query .= " ORDER BY p.price ASC";
+        break;
+    case 'price-desc':
+        $query .= " ORDER BY p.price DESC";
+        break;
+    default:
+        $query .= " ORDER BY p.id DESC"; // Default sorting
+        break;
+}
+
+$query .= " LIMIT ? OFFSET ?";
 $params[0] .= "ii";
 $params[] = $limit;
 $params[] = $offset;
@@ -78,15 +100,46 @@ while ($row = $products->fetch_assoc()) {
 
 // Generate the HTML for pagination
 $pagination = "";
+$maxVisiblePages = 3; // Maximum number of visible page links
+
 if ($page > 1) {
-    $pagination .= "<a href='#' data-page='" . ($page - 1) . "'>&laquo; Prev</a>";
+    $pagination .= "<a href='#' class='pagination-link' data-page='" . ($page - 1) . "'>&laquo; Prev</a>";
 }
-for ($i = 1; $i <= $totalPages; $i++) {
+
+// Determine the range of pages to display
+$startPage = max(1, $page - floor($maxVisiblePages / 2));
+$endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+// Adjust the start page if the end page is too close to the total pages
+if ($endPage - $startPage + 1 < $maxVisiblePages) {
+    $startPage = max(1, $endPage - $maxVisiblePages + 1);
+}
+
+// Add the first page and ellipses if necessary
+if ($startPage > 1) {
+    $pagination .= "<a href='#' class='pagination-link' data-page='1'>1</a>";
+    if ($startPage > 2) {
+        $pagination .= "<span class='pagination-ellipsis'>...</span>";
+    }
+}
+
+// Add the visible page links
+for ($i = $startPage; $i <= $endPage; $i++) {
     $active = $i == $page ? "active" : "";
-    $pagination .= "<a href='#' class='$active' data-page='$i'>$i</a>";
+    $pagination .= "<a href='#' class='pagination-link $active' data-page='$i'>$i</a>";
 }
+
+// Add the last page and ellipses if necessary
+if ($endPage < $totalPages) {
+    if ($endPage < $totalPages - 1) {
+        $pagination .= "<span class='pagination-ellipsis'>...</span>";
+    }
+    $pagination .= "<a href='#' class='pagination-link' data-page='$totalPages'>$totalPages</a>";
+}
+
+// Add the "Next" button
 if ($page < $totalPages) {
-    $pagination .= "<a href='#' data-page='" . ($page + 1) . "'>Next &raquo;</a>";
+    $pagination .= "<a href='#' class='pagination-link' data-page='" . ($page + 1) . "'>Next &raquo;</a>";
 }
 
 // Return the response as JSON

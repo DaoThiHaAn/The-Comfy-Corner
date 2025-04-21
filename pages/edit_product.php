@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section class="form-container">
     <div class="header-section">
-    <a href="<?=htmlspecialchars($previousPage)?>" class="back-link">⬅️ Back to Previous Page</a>
+    <a href="index.php?page=productmgnt&tab=view_all_products" class="back-link">⬅️ Back to Previous Page</a>
     <h2>Edit Product</h2>
     </div>
     <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']) . '?page=edit_product&id=' . $product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
