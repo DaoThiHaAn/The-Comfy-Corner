@@ -6,7 +6,7 @@
         <select id="role" onchange="fetchUsers()">
             <option value="all">All Roles</option>
             <option value="user">User</option>
-            <option value="moderator">Admin</option>
+            <option value="admin">Admin</option>
         </select>
     </div>
 

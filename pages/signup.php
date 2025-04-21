@@ -82,13 +82,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <form class="signup-form" action="<?=htmlspecialchars($_SERVER['PHP_SELF']).'?page=signup'?>" method="POST">
-            <p class="form-note">
-                *Note: You must fill in all the fields
-            </p>
-            <input type="text" placeholder="First name" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" required>
-            <input type="text" placeholder="Last name" name="lname" value="<?=htmlspecialchars($lname)?>" maxlength="255" required>
-            <input type="email" placeholder="Email" name="email" value="<?=htmlspecialchars($email)?>" maxlength="255" required>
-            <input class="username" type="text" placeholder="Username" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
+            <div class="form-element">
+                <label for="fname">First name: <span style="color: red;">*</span></label>
+                <input type="text" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" required>
+            </div>
+
+            <div class="form-element">
+                <label for="lname">Last name: <span style="color: red;">*</span></label>
+                <input type="text" name="lname" value="<?=htmlspecialchars($lname)?>" maxlength="255" required>
+            </div>
+
+            <div class="form-element">
+                <label for="email">Email: <span style="color: red;">*</span></label>
+                <input type="email" name="email" value="<?=htmlspecialchars($email)?>" maxlength="255" required>
+            </div>
+
+            <div class="form-element">
+                <label for="uname">Username: <span style="color: red;">*</span></label>
+                <input type="text" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
+            </div>
             <div class="acc-requirement">
                 <p>Username must:</p>
                 <!-- Check username requirement -->
@@ -96,13 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li class="name-pattern invalid">begin with 1 letter and followed by letter(s) or digit(s) or underscore(s)</li>
                 </ul>
             </div>
-            
-            <div class="password-container">
-                <input class="password" type="password" placeholder="Password" name="password" required>
-                <!-- Show/Hide password + change the icon -->
-                <img src="images/visible.png" class="toggle-password" 
-                width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
+
+            <div class="form-element">
+                <label for="password">Password: <span style="color: red;">*</span></label>
+                <div class="password-container">
+                    <input class="password" type="password" name="password" required>
+                    <!-- Show/Hide password + change the icon -->
+                    <img src="images/visible.png" class="toggle-password" 
+                    width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
+                </div>
             </div>
+            
 
             <div class="acc-requirement">
                 <p>Password must include:</p>
@@ -113,11 +129,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ., !, @, #, $, %, ^, &, * </li>
                 </ul>
             </div>
-            <div class="password-container">
-                <input class="password-cf invalid-border" type="password" placeholder="Confirm password" name="password-cf" required>
-                <!-- Show/Hide password + change the icon -->
-                <img src="images/visible.png" class="toggle-password-cf"
-                width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
+
+            <div class="form-element">
+                <label for="password-cf">Confirm password: <span style="color: red;">*</span></label>
+                <div class="password-container">
+                    <input class="password-cf invalid-border" type="password" name="password-cf" required>
+                    <!-- Show/Hide password + change the icon -->
+                    <img src="images/visible.png" class="toggle-password-cf"
+                    width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
+                </div>
             </div>
 
             <button type="submit">

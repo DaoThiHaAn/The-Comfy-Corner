@@ -3,16 +3,14 @@
     --dark-pink: #8f354d;
 }
 
-html, body {
-    height: 100%;
-}
-
 body {
     background-color: white;
     font-family: serif;
     font-size: 16px;
     margin: 0;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
 button {
@@ -255,7 +253,7 @@ nav a.active, .cart-btn.active {
 
 
 main {
-    min-height: 80vh;
+    flex: 1;
 }
 
 /* LOGIN DIALOG */
@@ -364,21 +362,28 @@ main {
 
 /* Footer */    
 footer {
-    background-color: var(--salmon-pink);
-    background-image: url("../images/store-icon.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: 200px;
+    background-color: var(--dark-pink);
     padding: 20px;
     text-align: left;
-    color: white;
+    color: rgb(196, 196, 196);
     font-size: 16px;
     margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px
 }
 
-.footer-content {
-    max-width: 900px;
-    margin: auto;
+/* Style the Font Awesome icon */
+footer .icon {
+    font-size: 8rem;
+    text-align: center;
+}
+
+
+footer i {
+    font-size: 1.2rem;
+    font-family: 'Patrik Hand';
 }
 
 .footer-contact, .footer-social {
@@ -400,7 +405,7 @@ footer {
 }
 
 footer a {
-    color: white;
+    color: rgb(196, 196, 196);
     text-decoration: none;
     font-weight: bold;
 }
@@ -474,7 +479,11 @@ footer a:hover {
 
     footer {
         font-size: 13px;
-        background-size: 100px;
+        gap: 20px
+    }
+
+    footer .icon {
+        font-size: 4rem;
     }
     
     .footer-social img {

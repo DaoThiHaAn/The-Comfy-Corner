@@ -50,7 +50,7 @@ window.addEventListener("scroll", function() {
     } else {
         topbtn.style.display = "none";
     }
-    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
         navbar.classList.add("scrolled");
 
     } else {

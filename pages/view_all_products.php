@@ -19,7 +19,7 @@ $products = $stmt->get_result();
 ?>
 
 <section class="container">
-    <h2>Product Management</h2>
+    <h2>Product List</h2>
 
     <!-- Search and Filter -->
     <div class="search-filter">

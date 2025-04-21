@@ -17,8 +17,14 @@ while ($row = $productQuery->fetch_assoc()) {
     $productTypes[] = $row['category_name'];
     $productCounts[] = $row['total'];
 }
-
 $totalProducts = $mydatabase->query("SELECT COUNT(*) AS total_products FROM product")->fetch_assoc()['total_products'];
+
+$productColors = [];
+$hueStep = 360 / count($productTypes); // Divide the hue spectrum evenly
+for ($i = 0; $i < count($productTypes); $i++) {
+    $hue = $i * $hueStep; // Calculate the hue for each category
+    $productColors[] = "hsl($hue, 60%, 50%)"; // Use 70% saturation and 50% lightness for balanced colors
+}
 ?>
 
 <h1>📊 Data Analysis</h1>
@@ -35,17 +41,28 @@ $totalProducts = $mydatabase->query("SELECT COUNT(*) AS total_products FROM prod
 </div>
 
 <script>
+    const productTypes = <?php echo json_encode($productTypes); ?>;
+    const productCounts = <?php echo json_encode($productCounts); ?>;
+    const productColors = <?php echo json_encode($productColors); ?>; // Pass consistent colors to JavaScript
+
+    const generateColors = (count) => {
+        const colors = [];
+        for (let i = 0; i < count; i++) {
+            const color = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`; // Generate random hex color
+            colors.push(color);
+        }
+        return colors;
+    };
+
     const productCtx = document.getElementById('productChart').getContext('2d');
     const productChart = new Chart(productCtx, {
         type: 'pie',
         data: {
-            labels: <?php echo json_encode($productTypes); ?>,
+            labels: productTypes,
             datasets: [{
                 label: 'Number of items',
-                data: <?php echo json_encode($productCounts); ?>,
-                backgroundColor: [
-                    '#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'
-                ],
+                data: productCounts,
+                backgroundColor: productColors,
                 borderWidth: 1
             }]
         },

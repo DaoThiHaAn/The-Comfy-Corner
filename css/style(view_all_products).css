@@ -28,6 +28,10 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+tbody tr:hover {
+    background-color: #f3ece0;
+}
+
 img {
     border-radius: 6px;
 }
@@ -67,6 +71,7 @@ img {
 
 .delete {
     background-color: #e74c3c;
+    cursor: pointer;
 }
 
 .delete:hover {

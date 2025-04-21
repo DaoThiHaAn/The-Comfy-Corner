@@ -15,27 +15,16 @@ button {
 
 .signin-container, .signup-container {
     position: relative;
-    height: 100vh;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.signup-container {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-
 .form-container {
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    position: absolute;  /* Position the form container in the center of the page*/
+    margin: auto;
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 40px 60px;
     box-shadow: 
         0 -5px 15px 0 rgba(194, 194, 194, 0.2), /*top shadow*/
         0 5px 15px 0 rgba(194, 194, 194, 0.2), /*bottom shadow*/
@@ -55,20 +44,23 @@ button {
     gap: 20px;
     align-items: center;
     justify-content: center;
+}
+
+.form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 100%;
 }
 
-.form-container form .form-note {
-    font-size: 14px;
-    color: rgb(254, 148, 148);
-    font-style: italic;
-    justify-content: flex-start;
-    width: 100%;
-    margin: 0;
+.form-element label {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: medium;
 }
 
 .form-container form input {
-    width: 90%;
+    width: 100%;
     height: 45px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -139,7 +131,6 @@ button {
 
 .password-container {
     position: relative;
-    width: 90%;
 }
 
 .toggle-password, .toggle-password-cf {

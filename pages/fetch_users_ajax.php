@@ -19,7 +19,7 @@ if ($role) {
     $query .= " AND role = ?";
     $params[] = $role;
 }
-$query .= " ORDER BY username ASC LIMIT ? OFFSET ?";
+$query .= " LIMIT ? OFFSET ?";
 $params[] = $limit;
 $params[] = $offset;
 
@@ -72,13 +72,43 @@ while ($row = $result->fetch_assoc()) {
 
 // Generate the HTML for pagination
 $pagination = "";
+$maxVisiblePages = 5; // Maximum number of visible page links
+
 if ($page > 1) {
     $pagination .= "<a href='#' data-page='" . ($page - 1) . "'>&laquo; Prev</a>";
 }
-for ($i = 1; $i <= $totalPages; $i++) {
+
+// Determine the range of pages to display
+$startPage = max(1, $page - floor($maxVisiblePages / 2));
+$endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+// Adjust the start page if the end page is too close to the total pages
+if ($endPage - $startPage + 1 < $maxVisiblePages) {
+    $startPage = max(1, $endPage - $maxVisiblePages + 1);
+}
+
+// Add the first page and ellipses if necessary
+if ($startPage > 1) {
+    $pagination .= "<a href='#' data-page='1'>1</a>";
+    if ($startPage > 2) {
+        $pagination .= "<span class='pagination-ellipsis'>...</span>";
+    }
+}
+
+// Add the visible page links
+for ($i = $startPage; $i <= $endPage; $i++) {
     $active = $i == $page ? "active" : "";
     $pagination .= "<a href='#' class='$active' data-page='$i'>$i</a>";
 }
+
+// Add the last page and ellipses if necessary
+if ($endPage < $totalPages) {
+    if ($endPage < $totalPages - 1) {
+        $pagination .= "<span class='pagination-ellipsis'>...</span>";
+    }
+    $pagination .= "<a href='#' data-page='$totalPages'>$totalPages</a>";
+}
+
 if ($page < $totalPages) {
     $pagination .= "<a href='#' data-page='" . ($page + 1) . "'>Next &raquo;</a>";
 }

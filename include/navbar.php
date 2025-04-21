@@ -35,7 +35,10 @@ if ($_SESSION['role'] == 'admin') {
     </div>
 
     <div class="dropdown">
-        <a class="dropbtn">Categories</a>
+        <a class="dropbtn">
+            Categories &nbsp;
+            <span><i class="fa-solid fa-sm fa-angle-down"></i></span>
+        </a>
         <!-- extract category from database -->
         <div class="dropdown-content">
             <?php
@@ -57,11 +60,11 @@ if ($_SESSION['role'] == 'admin') {
     <?php if ($_SESSION['role'] == 'guest') {?>
     <section class="signinup-btn">
         <button class="signin-btn" onclick="window.open('index.php?page=login', '_self')">
-            Log in
+            Log In
             <img src="images/enter.png" alt="Enter icon">
         </button>
         <button class="signup-btn" onclick="window.open('index.php?page=signup', '_self')">
-            Sign up
+            Sign Up
         </button>
     </section>
     <?php } else { 
