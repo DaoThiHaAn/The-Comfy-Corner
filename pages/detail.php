@@ -29,18 +29,22 @@
             <div class="price">
                 <p><?=$price?> &nbsp; VND</p>
             </div>
-            <p id="stock-<?=$sel_product['id']?>" class="stock">Stock: <?=$stock_quantity?></p> <!-- Display stock quantity -->
+            <p id="stock-<?=$sel_product['id']?>" class="stock">Stock: <?=$stock_quantity?></p>
 
 
             <?php if ($_SESSION['role'] != 'admin') {?>
             <div class="addtocart">
                 <form class="change-num">
-
-                    <input type="number" id="quantity-<?=$sel_product['id']?>" name="quantity" min="1" max="<?=$stock_quantity?>" value="1">
-
+                    <input type="number" id="quantity-<?=$sel_product['id']?>" name="quantity" 
+                        min="1" max="<?=$stock_quantity?>" value="1" 
+                        <?= $stock_quantity == 0 ? 'disabled' : '' ?>
+                    >
                 </form>
 
-                <button class="addtocart-btn" title="Add to Cart" onclick="addToCart(<?=$sel_product['id']?>)">
+                <button class="addtocart-btn" title="Add to Cart" 
+                    onclick="addToCart(<?=$sel_product['id']?>)" 
+                    <?= $stock_quantity == 0 ? 'disabled' : '' ?>
+                >
                     <img src="<?= $_SESSION['base_url'] ?>images/add-cart.png" alt="Add to Cart">
                 </button>
             </div>

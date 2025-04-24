@@ -123,6 +123,17 @@
     background-color: rgb(251, 154, 170);
   }
 
+  .purchase-info {
+    text-align: center;
+    font-size: large;
+  }
+
+  .purchase-info p:first-child {
+    color: var(--salmon-pink);
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
   @media (max-width: 700px) {
     .container {
       padding: 20px;

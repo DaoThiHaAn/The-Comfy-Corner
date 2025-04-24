@@ -90,6 +90,10 @@
     width: 100%;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 .addtocart {
     display: flex;
     justify-content: center;

@@ -45,9 +45,10 @@ if (isset($_POST['action']) && $_POST['action'] === 'update_quantity') {
         $totalStmt = $mydatabase->prepare($totalQuery);
         $totalStmt->bind_param("s", $_SESSION['username']);
         $totalStmt->execute();
-        $totalResult = $totalStmt->get_result()->fetch_assoc();
-        $totalCost = number_format($totalResult['total_cost'], 0, '.', ',');
-
+        $totalResult = $totalStmt->get_result()->fetch_assoc()['total_cost'];
+        $_SESSION['totalCost'] = $totalResult;
+        $totalCost = number_format($totalResult, 0, '.', ',');
+        
         echo json_encode([
             "success" => true,
             "individualTotal" => $individualTotal,
@@ -77,9 +78,10 @@ if (isset($_POST['action']) && $_POST['action'] === 'remove_item') {
         $totalStmt = $mydatabase->prepare($totalQuery);
         $totalStmt->bind_param("s", $_SESSION['username']);
         $totalStmt->execute();
-        $totalResult = $totalStmt->get_result()->fetch_assoc();
-        $totalCost = number_format($totalResult['total_cost'], 0, '.', ',');
-
+        $totalResult = $totalStmt->get_result()->fetch_assoc()['total_cost'];
+        $_SESSION['totalCost'] = $totalResult;
+        $totalCost = number_format($totalResult, 0, '.', ',');
+        
         echo json_encode([
             "success" => true,
             "totalCost" => $totalCost

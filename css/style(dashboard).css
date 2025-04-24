@@ -3,10 +3,18 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 0;
     gap: 40px;
     flex-wrap: wrap;
-    min-height: 80vh;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--dark-pink);
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 80px;
 }
 
 .dashboard-container img {

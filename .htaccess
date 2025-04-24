@@ -16,6 +16,7 @@ RewriteRule ^home$ index.php?page=home [L,QSA]
 RewriteRule ^detail/([^/]+)/([0-9]+)/?$ index.php?page=detail&name=$1&productId=$2 [L,QSA]
 RewriteRule ^edit_product/([0-9]+)/?$ index.php?page=edit_product&id=$1 [L,QSA]
 RewriteRule ^productmgnt/([a-zA-Z_]+)/?$ index.php?page=productmgnt&tab=$1 [L,QSA]
+RewriteRule ^order_view/([0-9]+)/?$ index.php?page=order_view&purchaseId=$1 [L,QSA]
 
 # Catch-all: Rewrite any single slug to page
 RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]

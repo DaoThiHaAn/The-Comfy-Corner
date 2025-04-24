@@ -3,8 +3,10 @@
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 2rem;
     color: var(--dark-pink);
+    text-align: center;
 }
 
 table {
@@ -45,7 +47,6 @@ img {
 }
 
 .cell-name {
-    text-decoration: none;
     color: #333;
     
 }
@@ -78,6 +79,18 @@ img {
     background-color: #952d21;
 }
 
+.view-btn {
+    background-color: #f3fdf9;
+    padding: 6px 12px;
+    border: 1px solid rgb(83, 116, 83);
+    color: rgb(83, 116, 83);
+    border-radius: 4px;
+}
+
+.view-btn:hover {
+    background-color: rgb(217, 251, 223);
+}
+
 .pagination {
     text-align: center;
 }
@@ -86,7 +99,6 @@ img {
     margin: 0 4px;
     padding: 6px 12px;
     background: #ddd;
-    text-decoration: none;
     color: #333;
     border-radius: 4px;
 }
@@ -138,6 +150,10 @@ img {
     border: 2px solid var(--dark-pink);
 }
 
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 @media screen and (max-width: 768px) {
     .container {

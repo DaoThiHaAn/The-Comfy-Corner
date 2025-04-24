@@ -76,10 +76,12 @@ if ($_SESSION['role'] == 'admin') {
         <div class="dropdown account-navbar <?=$_SESSION['role'] == 'admin' ? 'admin' : ''?>">
             <a class="dropbtn account">
                 <img src="<?=$img_profile?>" alt="User icon">
-                <?=$_SESSION['username']?>
+                <?=$_SESSION['username']?>&nbsp;
+                <span><i class="fa-solid fa-sm fa-angle-down"></i></span>
             </a>
             <div class="dropdown-content">
                 <a href="<?=$_SESSION['base_url']?>profile">View Profile</a>
+                <a href="<?=$_SESSION['base_url']?>order_history">Order History</a>
                 <a  onclick='openLogoutDialog()'>
                     <div class="logout">
                         Logout

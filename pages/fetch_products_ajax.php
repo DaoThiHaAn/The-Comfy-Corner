@@ -102,7 +102,7 @@ while ($row = $products->fetch_assoc()) {
 
 // Generate the HTML for pagination
 $pagination = "";
-$maxVisiblePages = 3; // Maximum number of visible page links
+$maxVisiblePages = 5; // Maximum number of visible page links
 
 if ($page > 1) {
     $pagination .= "<a href='#' class='pagination-link' data-page='" . ($page - 1) . "'>&laquo; Prev</a>";

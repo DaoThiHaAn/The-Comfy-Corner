@@ -100,7 +100,6 @@ button {
 }
 
 .form-container p a {
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -184,7 +183,6 @@ button {
 }
 
 .form-container p a {
-    text-decoration: none;
     font-weight: bold;
     color: black;
     font-size: 17px;
@@ -196,7 +194,6 @@ button {
 
 
 .forgot-password {
-    text-decoration: none;
     color: rgb(182, 119, 1);
     font-weight: medium;
 }

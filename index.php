@@ -103,6 +103,16 @@ function fetchUsername($loginname):string {
             echo "<link rel='stylesheet' href='{$base_url}/css/style(add_product).css'>";
             echo "<script src='{$base_url}/js/script(add_product).js' defer></script>";
         }
+        else if ($page == 'order_view') {
+            $css_page = 'cart_view';
+        }
+        else if ($page == 'admin_config') {
+            $css_page = 'admin_config';
+            echo "<link rel='stylesheet' href='{$base_url}/css/style(admin_config).css'>";
+            echo "<script src='{$base_url}/js/script(admin_config).js' defer></script>";
+        }
+        else if ($page == 'manage_order')
+            $css_page = 'view_all_products';
         else
             $css_page = $page;
         if (file_exists(__DIR__."/css/style($css_page).css")) {
@@ -119,7 +129,6 @@ function fetchUsername($loginname):string {
         <!-- Load the selected page -->
         <main>
         <?php
-        echo "Page:".__DIR__. $_GET['page'];
         if (file_exists(__DIR__."/pages/$page.php")) {
             include __DIR__."/pages/$page.php";
         } else {

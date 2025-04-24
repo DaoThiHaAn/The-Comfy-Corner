@@ -1,4 +1,3 @@
-// Update quantity
 function updateQuantity(productId, quantityInput) {
     const quantity = quantityInput.value;
 
@@ -28,7 +27,6 @@ function updateQuantity(productId, quantityInput) {
         });
 }
 
-// Remove item
 function removeItem(productId, removeButton) {
     fetch(base_url + "pages/update_cart.php", {
         method: "POST",
@@ -44,7 +42,6 @@ function removeItem(productId, removeButton) {
                 const item = removeButton.closest(".cart-item");
                 item.remove();
 
-                // Update the total cart price
                 updateCartSummary(data.totalCost);
             } else {
                 alert(data.message);
@@ -55,11 +52,11 @@ function removeItem(productId, removeButton) {
         });
 }
 
-// Update cart summary total
 function updateCartSummary(totalCost) {
-// Select the element that displays the total price
-const totalPriceElement = document.querySelector(".cart-summary h2 span");
+    const totalPriceElement = document.querySelector(".cart-summary h2 span");
+    totalPriceElement.innerText = totalCost.toLocaleString() + " VND";
 
-// Replace the old total price with the new one
-totalPriceElement.innerText = totalCost.toLocaleString() + " VND";
+    // Update the data-total-price attribute
+    const cartSummary = document.querySelector(".cart-summary");
+    cartSummary.setAttribute("data-total-price", totalCost);
 }

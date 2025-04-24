@@ -59,7 +59,6 @@
 
 .actions a, .save-btn {
     display: inline-block;
-    text-decoration: none;
     color: white;
     background-color: var(--dark-pink);
     padding: 10px 20px;
