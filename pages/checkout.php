@@ -18,12 +18,12 @@ $query = "DELETE FROM user_cart WHERE cartId = {$_SESSION['cartId']};";
 if ($mydatabase->query($query)) {
     echo "<script>
 alert('Order successfully');
-window.location.href='index.php?page=products';
+window.location.href='products';
 </script>";
 } else {
     echo "<script>
 alert('Order failed! Please try again.');
-window.location.href='index.php?page=cart_view';
+window.location.href='cart_view';
 </script>";
 }
 ?>

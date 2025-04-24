@@ -2,10 +2,10 @@ function togglePassword(eyeicon) {
     var password = eyeicon.previousElementSibling;
     if (password.type === "password") {
         password.type = "text";
-        eyeicon.src = "images/invisible.png";
+        eyeicon.src = base_url + "images/invisible.png";
     } else {
         password.type = "password";
-        eyeicon.src = "images/visible.png";
+        eyeicon.src = base_url + "images/visible.png";
     }
 }
 

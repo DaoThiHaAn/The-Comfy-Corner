@@ -1,18 +1,18 @@
 <section class="mgnt-container">
     <button class="toggle-drawer-btn" id="toggle-drawer-btn">
-        <img src="images/main-menu.png" alt="Toggle Drawer">
+        <img src="<?=$_SESSION['base_url']?>images/main-menu.png" alt="Toggle Drawer">
     </button>
     <section class="drawer">
-        <img src="images/logo-text.jpg" alt="Logo" class="logo">
+        <img src="<?=$_SESSION['base_url']?>images/logo-text.jpg" alt="Logo" class="logo">
         <h3>Product Management</h3>
         <hr>
         <a
-            href="index.php?page=productmgnt&tab=view_all_products"
+            href="view_all_products"
             class="drawer-link <?= (isset($_GET['tab']) && $_GET['tab']=='view_all_products') ? 'item-active' : '' ?>">
             View all products
         </a>
         <a
-            href="index.php?page=productmgnt&tab=add_product"
+            href="add_product"
             class="drawer-link <?= (isset($_GET['tab']) && $_GET['tab']=='add_product') ? 'item-active' : '' ?>">
             Add new product
         </a>
@@ -24,7 +24,7 @@
         $tab = isset($_GET['tab']) ? $_GET['tab'] : 'view_all_products';
 
         // Include the corresponding file
-        include $tab . '.php';
+        include __DIR__ . '/' . $tab . '.php';
         ?>
     </section>   
 </section>

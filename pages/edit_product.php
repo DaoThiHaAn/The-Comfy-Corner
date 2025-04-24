@@ -2,7 +2,6 @@
 $name = $img_file_name = '';
 $category_id = $price = $stock_quantity = 0;
 $description = '';
-$previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
 
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']); // Sanitize the product ID
@@ -21,7 +20,7 @@ if (isset($_GET['id'])) {
         $description = $product['description'];
         $category_id = $product['category_id'];
     } else {
-        echo "<script>alert('Product not found!'); window.location.href='index.php?page=prductmgnt&tab=view_all_products.php';</script>";
+        echo "<script>alert('Product not found!'); window.location.href='productmgnt/view_all_products';</script>";
         exit;
     }
 }
@@ -52,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section class="form-container">
     <div class="header-section">
-    <a href="index.php?page=productmgnt&tab=view_all_products" class="back-link">⬅️ Back to Previous Page</a>
+    <a href="<?=$_SESSION['base_url']?>productmgnt/view_all_products" class="back-link">⬅️ Back to Previous Page</a>
     <h2>Edit Product</h2>
     </div>
-    <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']) . '?page=edit_product&id=' . $product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
+    <form action="<?=$_SESSION['base_url']?>edit_product/<?=$product_id?>" class="edit-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="product_name">Product Name: <span style="color: red;">*</span></label>
             <input type="text" id="product_name" name="product_name" placeholder="Product Name"
@@ -94,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" id="product_image" name="product_image" accept="image/*">
             <?php if (!empty($img_file_name) || $img_file_name !== ''):
                 $type_name = $mydatabase->query("SELECT name FROM category WHERE id = $category_id")->fetch_assoc()['name'];
-                $image_path = "images/" . strtolower($type_name) . "/" .$img_file_name;
+                $image_path = $_SESSION['base_url']."images/" . strtolower($type_name) . "/" .$img_file_name;
             ?>
             <div class="image-preview">
                 <img id="file-preview" src="<?=$image_path?>" alt="Product Image">

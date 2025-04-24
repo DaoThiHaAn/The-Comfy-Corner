@@ -35,6 +35,9 @@ $result = $mydatabase->query($query);
 
     <!-- Cart Item -->
     <div class="cart-item" data-product-id="<?= $row['productId']; ?>">
+      <div class="item-number">
+        <p><?= $row['productId']; ?></p>
+      </div>
       <div class="main-info">
         <img src="<?= $image_path; ?>" alt="<?= $name; ?>" />
         <div class="item-details">
@@ -42,12 +45,16 @@ $result = $mydatabase->query($query);
           <p data-price="<?= $result2['price']; ?>">Price: <?= $price; ?></p>
         </div>
       </div>
-      <div>
+      <div class="action-zone">
         <div class="item-actions">
           <input type="number" value="<?= $number; ?>" min="1" onchange="updateQuantity(<?= $row['productId']; ?>, this)" />
           <button class="remove-btn" onclick="removeItem(<?= $row['productId']; ?>, this)">Remove</button>
         </div>
-        <div class="item-price"><?= number_format($result2['price'] * $number, 0, '.', ','); ?> VND</div>
+        <div>
+          <p>Subtotal:&nbsp;
+          <span class="item-price"><?= number_format($result2['price'] * $number, 0, '.', ','); ?> VND</span>
+          </p>
+        </div>
       </div>
 
     </div>
@@ -59,7 +66,7 @@ $result = $mydatabase->query($query);
         Total: 
         <span> <?= number_format($total_price, 0, '.', ','); ?> VND</span>
       </h2>
-      <button class="checkout-btn" onclick="window.location.href='index.php?page=checkout'">Proceed to Checkout</button>
+      <button class="checkout-btn" onclick="window.location.href='checkout'">Proceed to Checkout</button>
     </div>
 </section>
 <?php } ?>

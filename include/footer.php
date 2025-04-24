@@ -23,7 +23,7 @@ $googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=" . $encodedAd
         <div class="footer-social">
             <p>Follow us:</p>
             <a href="https://www.facebook.com" target="_blank">
-                <img src="images/fb-icon.png" alt="Facebook">
+                <img src="<?=$_SESSION['base_url']?>images/fb-icon.png" alt="Facebook">
             </a>
         </div>
     </div>

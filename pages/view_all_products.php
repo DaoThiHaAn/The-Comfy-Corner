@@ -1,22 +1,3 @@
-<?php
-// --- Pagination Setup ---
-$limit = 20; // Products per page
-$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
-$offset = ($page - 1) * $limit;
-
-// --- Fetch total count ---
-$result = $mydatabase->query("SELECT COUNT(*) as count FROM product");
-$total_rows = $result->fetch_assoc()['count'];
-$total_pages = ceil($total_rows / $limit);
-
-// --- Fetch current page of products ---
-$stmt = $mydatabase->prepare("SELECT p.*, c.name as category_name FROM product p 
-                              LEFT JOIN category c ON p.category_id = c.id 
-                              ORDER BY p.id DESC LIMIT ? OFFSET ?");
-$stmt->bind_param("ii", $limit, $offset);
-$stmt->execute();
-$products = $stmt->get_result();
-?>
 
 <section class="container">
     <h2>Product List</h2>

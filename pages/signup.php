@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             );      
             echo "<script>
                 alert('Account created successfully! 🎉 🎉 🎉\\nPlease login to continue');
-                window.location.href = 'index.php?page=login';
+                window.location.href = 'login';
                 console.log('Account created successfully!');
             </script>";                    
         } else {
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="p3">Register to continue buying process😊</p>
         </div>
 
-        <form class="signup-form" action="<?=htmlspecialchars($_SERVER['PHP_SELF']).'?page=signup'?>" method="POST">
+        <form class="signup-form" action="signup" method="POST">
             <div class="form-element">
                 <label for="fname">First name: <span style="color: red;">*</span></label>
                 <input type="text" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" required>
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-element">
                 <label for="uname">Username: <span style="color: red;">*</span></label>
-                <input type="text" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
+                <input class="username" type="text" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
             </div>
             <div class="acc-requirement">
                 <p>Username must:</p>
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="password-container">
                     <input class="password" type="password" name="password" required>
                     <!-- Show/Hide password + change the icon -->
-                    <img src="images/visible.png" class="toggle-password" 
+                    <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" 
                     width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
                 </div>
             </div>
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="password-container">
                     <input class="password-cf invalid-border" type="password" name="password-cf" required>
                     <!-- Show/Hide password + change the icon -->
-                    <img src="images/visible.png" class="toggle-password-cf"
+                    <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password-cf"
                     width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
                 </div>
             </div>
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <p>Already has an account? &nbsp;
-            <span> <a href="index.php?page=login">Login</a></span>
+            <span> <a href="login">Login</a></span>
         </p>
     </div>
 </div>

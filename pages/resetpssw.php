@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         session_destroy();
         echo "<script>
             alert('Password reset successfully! \\nPlease login to continue');
-            window.location.href = 'index.php?page=login';
+            window.location.href = 'login';
             console.log('Password reset successfully!');
         </script>";
     }
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         <div class="password-container">
                 <input class="password" type="password" placeholder="Password" name="password" required>
                 <!-- Show/Hide password + change the icon -->
-                <img src="images/visible.png" class="toggle-password" 
+                <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" 
                 width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
             </div>
 
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
             <div class="password-container">
                 <input class="password-cf invalid-border" type="password" placeholder="Confirm password" name="password-cf" required>
                 <!-- Show/Hide password + change the icon -->
-                <img src="images/visible.png" class="toggle-password-cf"
+                <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password-cf"
                 width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
             </div>
 

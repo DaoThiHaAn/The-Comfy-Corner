@@ -5,10 +5,10 @@
 
 <div class="slider">
     <div class="slides">
-        <img src="images/logo-text(1).jpg" alt="Logo">
-        <img src="images/slide1.jpg" alt="Slide 1">
-        <img src="images/slide2.jpg" alt="Slide 2">
-        <img src="images/slide3.jpg" alt="Slide 3">
+        <img src="<?=$_SESSION['base_url']?>images/logo-text(1).jpg" alt="Logo">
+        <img src="<?=$_SESSION['base_url']?>images/slide1.jpg" alt="Slide 1">
+        <img src="<?=$_SESSION['base_url']?>images/slide2.jpg" alt="Slide 2">
+        <img src="<?=$_SESSION['base_url']?>images/slide3.jpg" alt="Slide 3">
     </div>
 </div>
 

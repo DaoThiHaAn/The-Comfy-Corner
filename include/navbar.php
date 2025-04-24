@@ -1,17 +1,17 @@
 <nav class="navbar" id="navbar">
     <div class="openmenu" onclick="openMenu()">
-        <img src="images/list-view.png" alt="Open Menu" width="25">
+        <img src="<?=$_SESSION['base_url']?>images/list-view.png" alt="Open Menu" width="25">
     </div>
 
-    <div href="index.php?page=home" class="shopname-container">
-        <img src="images/logo.jpg" alt="Logo" height="30px">
+    <div href="<?=$_SESSION['base_url']?>home" class="shopname-container">
+        <img src="<?=$_SESSION['base_url']?>images/logo.jpg" alt="Logo" height="30px">
         <span>The Comfy Corner</span>
     </div>
 
     <div>
-        <a id="homebtn" href="index.php?page=home" class="<?=($page=='home')? 'active':''?>">
+        <a id="homebtn" href="<?=$_SESSION['base_url']?>home" class="<?=($page=='home')? 'active':''?>">
             <img id="homeicon" 
-            src="images/<?php echo ($page == 'home') ? 'home-hover.png' : 'home.png'; ?>"
+            src="<?=$_SESSION['base_url']?>images/<?php echo ($page == 'home') ? 'home-hover.png' : 'home.png'; ?>"
             alt="Home">
         &nbsp;Home
         </a>
@@ -20,16 +20,16 @@
     <!-- Set the UI according to user role -->
 <?php
 if ($_SESSION['role'] == 'admin') {
-    $img_profile = "images/admin-profile.png"; 
+    $img_profile = $_SESSION['base_url']."images/admin-profile.png"; 
 ?>
     <div>
-        <a href="index.php?page=dashboard" class="<?=($page=='dashboard')?'active':''?>">
+        <a href="<?=$_SESSION['base_url']?>dashboard" class="<?=($page=='dashboard')?'active':''?>">
             Dashboard
         </a>
     </div>
-<?php } else {?>
+<?php } else { ?>
     <div>
-        <a href="index.php?page=products" class="<?=($page=='products')?'active':''?>">
+        <a href="<?=$_SESSION['base_url']?>products" class="<?=($page=='products')?'active':''?>">
             Products
         </a>
     </div>
@@ -46,30 +46,30 @@ if ($_SESSION['role'] == 'admin') {
             while ($row = $categories->fetch_assoc()) {
                 $category_name = ucwords($row['name']);
                 $category_id = $row['id'];
-                echo "<a href=\"index.php?page=products&category[]={$category_id}\">$category_name</a>";
+                echo "<a href=\"{$_SESSION['base_url']}products?category[]={$category_id}\">$category_name</a>";
             }
             ?>
         </div>
     </div>
     <?php } ?>
     <div>
-        <a href="index.php?page=contact" class="<?=($page=='contact')?'active':''?>">Contact</a>
+        <a href="<?=$_SESSION['base_url']?>contact" class="<?=($page=='contact')?'active':''?>">Contact</a>
     </div>
 
     
     <?php if ($_SESSION['role'] == 'guest') {?>
     <section class="signinup-btn">
-        <button class="signin-btn" onclick="window.open('index.php?page=login', '_self')">
+        <button class="signin-btn" onclick="window.open('<?=$_SESSION['base_url']?>login', '_self')">
             Log In
-            <img src="images/enter.png" alt="Enter icon">
+            <img src="<?=$_SESSION['base_url']?>images/enter.png" alt="Enter icon">
         </button>
-        <button class="signup-btn" onclick="window.open('index.php?page=signup', '_self')">
+        <button class="signup-btn" onclick="window.open('<?=$_SESSION['base_url']?>signup', '_self')">
             Sign Up
         </button>
     </section>
     <?php } else { 
     if ($_SESSION['role'] == 'user') {
-        $img_profile = "images/profile.png"; 
+        $img_profile = $_SESSION['base_url']."images/profile.png"; 
     }    
     ?>
     <section class="cart-account">
@@ -79,11 +79,11 @@ if ($_SESSION['role'] == 'admin') {
                 <?=$_SESSION['username']?>
             </a>
             <div class="dropdown-content">
-                <a href="index.php?page=profile">View Profile</a>
+                <a href="<?=$_SESSION['base_url']?>profile">View Profile</a>
                 <a  onclick='openLogoutDialog()'>
                     <div class="logout">
                         Logout
-                        <img src="images/logout.png" alt="Logout icon">
+                        <img src="<?=$_SESSION['base_url']?>images/logout.png" alt="Logout icon">
                     </div>
                 </a>
             </div>
@@ -91,8 +91,8 @@ if ($_SESSION['role'] == 'admin') {
 
         <?php if ($_SESSION['role'] == 'user') { ?>
         <div class="cart-navbar">
-            <button class="cart-btn <?=($page=='cart')?'active':''?>" onclick="window.location.href='index.php?page=cart_view'" title="Click to view your cart">
-                <img class="cart" src="images/cart.png" alt="Cart icon">
+            <button class="cart-btn <?=($page=='cart')?'active':''?>" onclick="window.location.href='<?= $_SESSION['base_url'] ?>cart_view'" title="Click to view your cart">
+                <img class="cart" src="<?=$_SESSION['base_url']?>images/cart.png" alt="Cart icon">
             </button>
         </div>
     </section>

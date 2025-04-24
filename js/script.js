@@ -1,5 +1,4 @@
 console.log("script.js loaded");
-
 const homeicon = document.getElementById("homeicon");
 var navbar = document.getElementById("navbar")
 
@@ -9,7 +8,7 @@ document.getElementById("homebtn").addEventListener("mouseover", () => {
 });
 
 document.getElementById("homebtn").addEventListener("mouseout", () => {
-    if (!window.location.href.includes("page=home")) {
+    if (!window.location.href.includes("home")) {
         homeicon.src = base_url + "images/home.png";
     }
 });
@@ -118,7 +117,7 @@ function openLogoutDialog() {
 
 function confirmLogout() {
     document.querySelector('.dialog-container').style.display = 'none';
-    window.location.href = "index.php?page=logout";
+    window.location.href = base_url + "logout";
 }
 
 function openDeleteDialog() {
@@ -134,7 +133,7 @@ function openDeleteDialog() {
 
 function confirmDelete() {
     document.querySelector('.dialog-container').style.display = 'none';
-    window.location.href = "index.php?page=delete_account";
+    window.location.href = "delete_account";
 }
 
 function openLoginRequiredDialog() {

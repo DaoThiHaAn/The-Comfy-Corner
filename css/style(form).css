@@ -44,6 +44,7 @@ button {
     gap: 20px;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .form-element {
@@ -70,7 +71,6 @@ button {
 
 .form-container form .password, .form-container form .password-cf {
     padding-right: 40px; /* Space for the icon */
-    width: 100%;
 }
 
 .form-container form input.invalid-border {
@@ -131,6 +131,7 @@ button {
 
 .password-container {
     position: relative;
+    width: 100%;
 }
 
 .toggle-password, .toggle-password-cf {
@@ -164,18 +165,18 @@ button {
 
 
 .form-container form button {
-    width: 60%;
     height: 40px;
     background-color: var(--dark-pink);
     color: white;
     font-size: 17px;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: fit-content;
 }
 
 .form-container form button:hover {
@@ -249,7 +250,6 @@ button {
     .form-container form button {
         font-size: 15px;
         height: 35px;
-        width: 50%;
         padding: 8px;
     }
 
@@ -258,7 +258,6 @@ button {
     }
     
     .form-container form input {
-        width: 90%;
         height: 35px;
         border: 1px solid #ccc;
         border-radius: 5px;

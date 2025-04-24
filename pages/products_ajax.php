@@ -93,7 +93,7 @@ $products_html = "<section class='card-zone'>";
         </div>
         <div>
             <button class='viewdetail' 
-                onclick=\"window.open('index.php?page=detail&name=".urlencode($name)."&productId=".$row['id']."', '_blank')\">
+                onclick=\"window.open('detail/".urlencode($name)."/".$row['id']."', '_blank')\">
                 View detail
             </button>
         </div>
@@ -101,7 +101,7 @@ $products_html = "<section class='card-zone'>";
         <div>";
         if ($_SESSION['role'] == 'guest') {
             $products_html .=  "<button class='addtocart' title='Add to Cart' onclick='openLoginRequiredDialog()'>
-                <img src='images/add-cart.png' alt='Add to Cart'>
+                <img src='{$_SESSION['base_url']}images/add-cart.png' alt='Add to Cart'>
             </button>";
         }
         else if ($_SESSION['role'] == 'user') {
@@ -111,8 +111,8 @@ $products_html = "<section class='card-zone'>";
                 </button>";
             } else {
                 $products_html .=  "<button class='addtocart' title='Add to Cart' 
-                onclick='addToCart(" . $row['id'] . ")'\">
-                    <img src='images/add-cart.png' alt='Add to Cart'>
+                onclick='addToCart(" . $row['id'] . ")'>
+                    <img src='{$_SESSION['base_url']}images/add-cart.png' alt='Add to Cart'>
                 </button>";
             }
         }

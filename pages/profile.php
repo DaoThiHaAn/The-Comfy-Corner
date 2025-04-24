@@ -30,8 +30,8 @@
     </div>
 
     <div class="actions">
-        <a href="index.php?page=edit_profile">Edit Profile</a>
-        <a href="index.php?page=resetpssw">Change Password</a>
+        <a href="edit_profile">Edit Profile</a>
+        <a href="resetpssw">Change Password</a>
         <a class="logout" onclick="openLogoutDialog()">Logout</a>
     </div>
 

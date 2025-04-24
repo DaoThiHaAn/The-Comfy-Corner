@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
 
             echo "<script>
             console.log('Login successfully!');
-            window.location.href = 'index.php?page=home';
+            window.location.href = 'home';
             </script>";
         }
         else {
@@ -53,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
             <p class="p2">Welcome back!</p>
         </div>
 
-        <form action="<?=$_SERVER['PHP_SELF'].'?page=login'?>" method="POST">                    
+        <form action="<?=$_SESSION['base_url']?>login" method="POST">                    
             <input class="username" type="text" placeholder="Email or username" name="uname-email" value="<?=htmlspecialchars($username_email)?>"required>
             
             <div class="password-container">
                 <input class="password" type="password" placeholder="Password" name="password" value="<?=htmlspecialchars($password)?>" required>
                 <!-- Show/Hide password + change the icon -->
-                <img src="images/visible.png" class="toggle-password" width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
+                <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
             </div>
 
             <button type="submit">
@@ -67,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
             </button>
         </form>
 
-        <a class="forgot-password" href="index.php?page=forgotpssw">Forgot password?</a>
+        <a class="forgot-password" href="forgotpssw">Forgot password?</a>
 
         <p>Don't have an account? &nbsp;
-            <span> <a href="index.php?page=signup">Register Now</a></span>
+            <span> <a href="signup">Register Now</a></span>
         </p>
     </div>
 </div>

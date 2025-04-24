@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-container">
     <h2>Add New Product</h2>
 
-    <form action="<?=htmlspecialchars($_SERVER['PHP_SELF']).'?page=productmgnt&tab=add_product'?>" class="add-form" method="POST" enctype="multipart/form-data">
+    <form action="add_product" class="add-form" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="product_name">Product Name: <span style="color: red;">*</span></label>
             <input type="text" id="product_name" name="product_name" placeholder="Product Name"

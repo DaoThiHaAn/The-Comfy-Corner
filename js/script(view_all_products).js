@@ -2,7 +2,7 @@ function fetchProducts(page = 1) {
     const search = document.getElementById("search").value;
     const category = document.getElementById("category").value;
 
-    fetch(`pages/fetch_products_ajax.php?search=${encodeURIComponent(search)}&category=${category}&page=${page}`)
+    fetch(`${base_url}pages/fetch_products_ajax.php?search=${encodeURIComponent(search)}&category=${category}&page=${page}`)
         .then((response) => response.json())
         .then((data) => {
             // Update the products table
@@ -35,7 +35,7 @@ function deleteProduct(event, productId) {
     event.preventDefault(); // Prevent the default link behavior
 
     if (confirm("Are you sure you want to delete this product?")) {
-        fetch("pages/delete_product_ajax.php", {
+        fetch(base_url + "pages/delete_product_ajax.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",

@@ -52,6 +52,7 @@ img {
 
 .pagination {
     text-align: center;
+    margin: 20px auto;
 }
 
 .pagination a {

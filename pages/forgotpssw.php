@@ -10,7 +10,7 @@ if  ($_SERVER['REQUEST_METHOD'] == "POST") {
             <body>
                 <h1>Reset Password</h1><br>
                 <p>Click the link below to reset your password:</p>
-                <a href='$base_url/index.php?page=resetpssw'>
+                <a href='resetpssw'>
                     <h3>Reset Password</h3>
                 </a>
             </body>
@@ -49,16 +49,16 @@ if  ($_SERVER['REQUEST_METHOD'] == "POST") {
             <p class="p2">Please enter your email to reset your password.</p>
         </div>
 
-        <form action="<?=$_SERVER['PHP_SELF'].'?page=forgotpssw'?>" method="POST">                    
+        <form action="forgotpssw" method="POST">                    
             <input type="email" placeholder="Email" name="email" required>
             <button type="submit">
                 Continue 
-                &nbsp; &nbsp; <img src="images/right-arrow-white.png" alt="right-arrow" width="25" height="25">
+                &nbsp; &nbsp; <img src="<?=$_SESSION['base_url']?>images/right-arrow-white.png" alt="right-arrow" width="25" height="25">
             </button>
         </form>
 
         <p>Don't have an account? &nbsp;
-            <span> <a href="index.php?page=signup">Register Now</a></span>
+            <span> <a href="signup">Register Now</a></span>
         </p>
     </div>
 </div>

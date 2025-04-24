@@ -82,14 +82,14 @@ $i = $offset + 1;
 while ($row = $products->fetch_assoc()) {
     $html .= "<tr>
                 <td>{$i}</td>
-                <td><a class='cell-name' href='index.php?page=detail&productId={$row['id']}' title='Click to view product display'>" 
+                <td><a class='cell-name' href='{$_SESSION['base_url']}detail/" . urlencode($row['name']) . "/{$row['id']}' title='Click to view product display'>" 
                     . htmlspecialchars($row['name']) 
                 . "</a></td>
                 <td>" . htmlspecialchars($row['category_name']) . "</td>
                 <td>" . number_format($row['price']) . "</td>
                 <td>{$row['stock_quantity']}</td>
                 <td class='action-btn'>
-                    <a href='index.php?page=edit_product&id={$row['id']}' class='btn modify' title='Edit'>
+                    <a href='{$_SESSION['base_url']}edit_product/{$row['id']}' class='btn modify' title='Edit'>
                         <i class='fa-regular fa-pen-to-square'></i>
                     </a>
                     <a class='btn delete' onclick=\"deleteProduct(event, " . $row['id'] . ")\" title='Delete'>

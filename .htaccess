@@ -1,0 +1,21 @@
+RewriteEngine On
+RewriteBase /2252002/
+
+# Skip existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect base URL to /home (browser URL will change)
+RewriteRule ^$ home [R=301,L]
+
+# Rewrite /home to index.php?page=home
+RewriteRule ^home$ index.php?page=home [L,QSA]
+
+# Custom rewrite rules
+RewriteRule ^detail/([^/]+)/([0-9]+)/?$ index.php?page=detail&name=$1&productId=$2 [L,QSA]
+RewriteRule ^edit_product/([0-9]+)/?$ index.php?page=edit_product&id=$1 [L,QSA]
+RewriteRule ^productmgnt/([a-zA-Z_]+)/?$ index.php?page=productmgnt&tab=$1 [L,QSA]
+
+# Catch-all: Rewrite any single slug to page
+RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]

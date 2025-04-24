@@ -11,14 +11,28 @@
     display: flex;
     gap: 15px;
     align-items: center;
+    flex: 2;  
+  }
+
+  .action-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items:self-end;
+    justify-content: center;
   }
   
   .cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 20px 10px;
     border-bottom: 1px solid #c6c6c6;
+    gap: 30px;
+  }
+
+  .item-number {
+    max-width: 100px;
+    margin-right: 1rem;
   }
 
   .cart-item img {

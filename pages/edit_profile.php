@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form class="profile-container" action="index.php?page=edit_profile" method="post">
+<form class="profile-container" action="edit_profile" method="post">
 <?php
     $query = "SELECT * FROM account WHERE username = '" .$_SESSION['username'] ."';";
     $result = $mydatabase->query($query)->fetch_assoc();

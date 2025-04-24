@@ -15,8 +15,9 @@ if (!defined('ADMIN_SETUP') && !file_exists(__DIR__ . "\\pages\\admin_config.php
 }
 
 // Automatically get the base URL no matter where the folder is
-$base_url = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/";
-
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+$base_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . "/";
+$_SESSION['base_url'] = $base_url;
 // Get the page parameter, default to 'home' if not set 
 $page = isset($_GET['page']) ? $_GET['page']: 'home';
 
@@ -69,14 +70,14 @@ function fetchUsername($loginname):string {
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <link rel="stylesheet" href="css/style(index).css">
+        <link rel="stylesheet" href="<?= $base_url; ?>/css/style(index).css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick Hand">
         <script src="https://kit.fontawesome.com/e38d7f03e0.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
         <?php
         if (isset($_GET['tab'])) {
-            echo "<link rel='stylesheet' href='css/style({$_GET['tab']}).css'>";
+            echo "<link rel='stylesheet' href='{$base_url}/css/style({$_GET['tab']}).css'>";
         } ?>
 
     <!-- SEO -->
@@ -99,13 +100,13 @@ function fetchUsername($loginname):string {
             $css_page = 'profile';
         else if ($page == 'edit_product') {
             $css_page = $page;
-            echo "<link rel='stylesheet' href='css/style(add_product).css'>";
-            echo "<script src='js/script(add_product).js' defer></script>";
+            echo "<link rel='stylesheet' href='{$base_url}/css/style(add_product).css'>";
+            echo "<script src='{$base_url}/js/script(add_product).js' defer></script>";
         }
         else
             $css_page = $page;
-        if (file_exists("css/style($css_page).css")) {
-            echo "<link rel='stylesheet' href='css/style($css_page).css'>";
+        if (file_exists(__DIR__."/css/style($css_page).css")) {
+            echo "<link rel='stylesheet' href='{$base_url}/css/style($css_page).css'>";
         }
         ?>
     </head>
@@ -113,14 +114,16 @@ function fetchUsername($loginname):string {
     <body>
         <button onclick="scrollToTop()" id="topbtn"></button>
         
-        <?php include("include/navbar.php"); ?>
+        <?php include __DIR__ . "/include/navbar.php"; ?>
 
         <!-- Load the selected page -->
         <main>
         <?php
-        if (file_exists("pages/$page.php")) {
-            include("pages/$page.php");
+        echo "Page:".__DIR__. $_GET['page'];
+        if (file_exists(__DIR__."/pages/$page.php")) {
+            include __DIR__."/pages/$page.php";
         } else {
+            echo "<script>console.log('Page not found: $page');</script>";
             echo "<h2>404 Page Not Found 🥲 </h2>";
         }
         ?>
@@ -132,28 +135,29 @@ function fetchUsername($loginname):string {
                 <h3 class="dialog-header">WARNING!</h3>
 
                 <div class="dialog-body">
+
                     <div class="content"></div>  <!-- Insert dialog content here -->
                     <div class="dialog-btn">
                         <button class="cancel-btn" onclick="closeDialog()">Cancel</button>
                         <button class="ok-btn" onclick="closeDialog()">OK</button>
-                        <button class="signin-btn-dialog" onclick="window.location.href='index.php?page=login'">Sign in</button>
+                        <button class="signin-btn-dialog" onclick="window.location.href='login'">Sign in</button>
                     </div>
                 </div>
             </div>
         </dialog>
 
-        <?php include("include/footer.php"); ?>
+        <?php include __DIR__."/include/footer.php"; ?>
 
     </body>
 </html>
-<script src="js/script.js"></script>
+<script src="<?=$_SESSION['base_url']?>js/script.js"></script>
 <?php
 if (isset($_GET['tab'])) {
-    echo "<script src='js/script({$_GET['tab']}).js'></script>";
+    echo "<script src='{$base_url}/js/script({$_GET['tab']}).js'></script>";
 }
 if ($page == 'detail')
-        echo "<script src='js/script(products).js'></script>";
-echo "<script src='js/script($css_page).js'></script>";
+        echo "<script src='{$base_url}/js/script(products).js'></script>";
+echo "<script src='{$base_url}/js/script($css_page).js'></script>";
 ?>
 
 

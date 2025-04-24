@@ -2,7 +2,7 @@
 function updateQuantity(productId, quantityInput) {
     const quantity = quantityInput.value;
 
-    fetch("pages/update_cart.php", {
+    fetch(base_url + "pages/update_cart.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -30,7 +30,7 @@ function updateQuantity(productId, quantityInput) {
 
 // Remove item
 function removeItem(productId, removeButton) {
-    fetch("pages/update_cart.php", {
+    fetch(base_url + "pages/update_cart.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",

@@ -1,7 +1,7 @@
 function fetchUsers(page = 1) {
     const role = document.getElementById("role").value;
 
-    fetch(`pages/fetch_users_ajax.php?role=${role}&page=${page}`)
+    fetch(`${base_url}pages/fetch_users_ajax.php?role=${role}&page=${page}`)
         .then((response) => response.json())
         .then((data) => {
             if (data.html) {
@@ -28,7 +28,7 @@ function fetchUsers(page = 1) {
 // Assign admin role to a user
 function assignAdmin(username) {
     if (confirm("Are you sure you want to make this user an admin?")) {
-        fetch("pages/assign_admin_ajax.php", {
+        fetch(base_url + "pages/assign_admin_ajax.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",

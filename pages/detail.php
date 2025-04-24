@@ -6,9 +6,9 @@
     $type_name = $mydatabase->query("SELECT name FROM category WHERE id = " .$sel_product['category_id'])->fetch_assoc()['name']; //get the type name from category table
     if (is_null($sel_product['image']) || $sel_product['image'] === '') {
         // Handle null/empty case, e.g., use a default image
-        $image_path = "images/unavailable-img.jpg";
+        $image_path = $_SESSION['base_url']."images/unavailable-img.jpg";
     } else
-        $image_path = "images/$type_name/" .$sel_product['image'];
+        $image_path = $_SESSION['base_url']."images/$type_name/" .$sel_product['image']; // updated to include base_url
     $description = $sel_product['description'];
 ?>
 
@@ -41,7 +41,7 @@
                 </form>
 
                 <button class="addtocart-btn" title="Add to Cart" onclick="addToCart(<?=$sel_product['id']?>)">
-                    <img src="images/add-cart.png" alt="Add to Cart">
+                    <img src="<?= $_SESSION['base_url'] ?>images/add-cart.png" alt="Add to Cart">
                 </button>
             </div>
             <?php } ?>

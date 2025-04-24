@@ -48,7 +48,7 @@ function loadProducts(page = 1) {
     history.replaceState(null, "", newUrl);
 
     // Fetch products from the server
-    fetch("pages/products_ajax.php?" + params.toString())
+    fetch(base_url + "pages/products_ajax.php?" + params.toString())
         .then(response => response.json())
         .then(data => {
             // Insert HTML code into the show screen
@@ -110,11 +110,11 @@ function addToCart(productId) {
 
     // Validate the quantity
     if (isNaN(quantity) || quantity < 1) {
-        alert("Please enter a valid quantity.");
+        alert("Please enter the quantity number greater than 0.");
         return;
     }
 
-    fetch("pages/add2cart_ajax.php", {
+    fetch(base_url + "pages/add2cart_ajax.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",

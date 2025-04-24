@@ -1,11 +1,6 @@
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .profile-container {
     max-width: 600px;
+    width: max-content;
     background-color: #fff;
     border-radius: 10px;
     padding: 30px;
@@ -16,6 +11,7 @@ main {
     gap: 20px;
     box-sizing: border-box;
     justify-content: center;
+    margin: 30px auto;
 }
 
 .profile-header {
