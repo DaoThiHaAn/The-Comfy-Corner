@@ -37,11 +37,12 @@ $result = $stmt->get_result();
                 $total_quantity += $row2['quantity'];
             }
         ?>
-        <a class="order-card" href="<?= $_SESSION['base_url'] ?>order_view/<?= $row['purchaseId']; ?>" data-purchase-id="<?= $row['purchaseId']; ?>">
-                <h3>Order ID: <?= $row['purchaseId']; ?></h3>
-                <p><strong>Time Ordered:</strong> <?= $row['time_create']; ?></p>
-                <p><strong>Total Price:</strong> <?= number_format($row['total_price'], 0, '.', ','); ?> VND</p>
-                <p><strong>Total Items:</strong> <?= $total_quantity; ?></p>
+        <a class="order-card" href="<?= $_SESSION['base_url'] ?>order_view/<?= $row['purchaseId']; ?>" 
+            data-purchase-id="<?= $row['purchaseId']; ?>" title="Click to view order details">
+            <h3>Order ID: <?= $row['purchaseId']; ?></h3>
+            <p><strong>Time Ordered:</strong> <?= $row['time_create']; ?></p>
+            <p><strong>Total Price:</strong> <?= number_format($row['total_price'], 0, '.', ','); ?> VND</p>
+            <p><strong>Total Items:</strong> <?= $total_quantity; ?></p>
         </a>
         <?php endwhile; ?>
     <?php else: ?>

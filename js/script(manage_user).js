@@ -1,7 +1,11 @@
 function fetchUsers(page = 1) {
     const role = document.getElementById("role").value;
 
-    fetch(`${base_url}pages/fetch_users_ajax.php?role=${role}&page=${page}`)
+    // Update the URL dynamically
+    const newUrl = `${base_url}manage_user?role=${role}&pagenum=${page}`;
+    window.history.pushState(null, "", newUrl);
+
+    fetch(`${base_url}pages/fetch_users_ajax.php?role=${role}&pagenum=${page}`)
         .then((response) => response.json())
         .then((data) => {
             if (data.html) {
@@ -51,4 +55,19 @@ function assignAdmin(username) {
 }
 
 // Fetch users on page load
-document.addEventListener("DOMContentLoaded", () => fetchUsers());
+document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get("role") || "all"; // Default to "all" if no role is specified
+    document.getElementById("role").value = role; // Set the dropdown to the correct role
+    fetchUsers()
+});
+
+// Handle browser back/forward navigation
+window.addEventListener("popstate", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get("role") || "all";
+    const page = urlParams.get("page") || 1;
+
+    document.getElementById("role").value = role; // Update the dropdown
+    fetchUsers(page); // Fetch users for the current state
+});

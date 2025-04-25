@@ -82,7 +82,7 @@ if ($_SESSION['role'] == 'admin') {
             <div class="dropdown-content">
                 <a href="<?=$_SESSION['base_url']?>profile">View Profile</a>
                 <a href="<?=$_SESSION['base_url']?>order_history">Order History</a>
-                <a  onclick='openLogoutDialog()'>
+                <a  onclick='openLogoutDialog()' class="logout-btn">
                     <div class="logout">
                         Logout
                         <img src="<?=$_SESSION['base_url']?>images/logout.png" alt="Logout icon">
