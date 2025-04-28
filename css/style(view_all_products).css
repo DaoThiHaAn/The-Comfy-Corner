@@ -54,6 +54,12 @@ img {
 .cell-name:hover {
     text-decoration: underline;
 }
+.cell-name span {
+    color: rgb(197, 197, 197);
+}
+.cell-name span:hover {
+    text-decoration: none;
+}
 
 .action-btn {
     display: flex;

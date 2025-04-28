@@ -9,7 +9,7 @@ if ($mydatabase->connect_error) {
 // Get search and filter parameters
 $search = isset($_GET['search']) ? "%" . $mydatabase->real_escape_string($_GET['search']) . "%" : "%%";
 $category = isset($_GET['category']) && $_GET['category'] !== "all" ? intval($_GET['category']) : null;
-$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$page = isset($_GET['pagenum']) ? max(1, intval($_GET['pagenum'])) : 1;
 $limit = 10; // Products per page
 $offset = ($page - 1) * $limit;
 
@@ -83,7 +83,7 @@ while ($row = $products->fetch_assoc()) {
     $html .= "<tr>
                 <td>{$i}</td>
                 <td><a class='cell-name' href='{$_SESSION['base_url']}detail/" . urlencode($row['name']) . "/{$row['id']}' title='Click to view product display'>" 
-                    . htmlspecialchars($row['name']) 
+                    . htmlspecialchars($row['name']) . "<span>&nbsp;&nbsp;<i class='fa-solid fa-up-right-and-down-left-from-center'></i></span>" 
                 . "</a></td>
                 <td>" . htmlspecialchars($row['category_name']) . "</td>
                 <td>" . number_format($row['price']) . "</td>
