@@ -125,11 +125,6 @@ function addToCart(productId) {
         .then((data) => {
             if (data.success) {
                 alert(data.message); // Show success message
-                // Optionally update the stock dynamically
-                const stockElement = document.querySelector(`#stock-${productId}`);
-                if (stockElement) {
-                    stockElement.innerText = `Stock: ${data.remainingStock}`;
-                }
             } else {
                 alert(data.message); // Show error message
             }

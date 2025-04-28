@@ -56,12 +56,6 @@ if (isset($_POST['productId']) && isset($_POST['quantity'])) {
         $insertStmt->execute();
     }
 
-    // Update the stock quantity in the product table
-    $updateStockQuery = "UPDATE product SET stock_quantity = stock_quantity - ? WHERE id = ?";
-    $updateStockStmt = $mydatabase->prepare($updateStockQuery);
-    $updateStockStmt->bind_param("ii", $quantity, $productId);
-    $updateStockStmt->execute();
-
     echo json_encode(["success" => true, "message" => "Product added to cart successfully.", "remainingStock" => $stockResult['stock_quantity'] - $quantity]);
     exit;
 } else {

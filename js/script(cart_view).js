@@ -42,7 +42,14 @@ function removeItem(productId, removeButton) {
                 const item = removeButton.closest(".cart-item");
                 item.remove();
 
+                // Update the total price
                 updateCartSummary(data.totalCost);
+
+                // Check if the cart is empty
+                const cartItems = document.querySelectorAll(".cart-item");
+                if (cartItems.length === 0) {
+                    hideCartSummary();
+                }
             } else {
                 alert(data.message);
             }
@@ -54,9 +61,29 @@ function removeItem(productId, removeButton) {
 
 function updateCartSummary(totalCost) {
     const totalPriceElement = document.querySelector(".cart-summary h2 span");
-    totalPriceElement.innerText = totalCost.toLocaleString() + " VND";
-
-    // Update the data-total-price attribute
     const cartSummary = document.querySelector(".cart-summary");
-    cartSummary.setAttribute("data-total-price", totalCost);
+
+    if (totalCost === 0) {
+        hideCartSummary();
+    } else {
+        totalPriceElement.innerText = totalCost.toLocaleString() + " VND";
+        cartSummary.setAttribute("data-total-price", totalCost);
+    }
+}
+
+function hideCartSummary() {
+    const cartSummary = document.querySelector(".cart-summary");
+    const container = document.querySelector(".container");
+
+    // Hide the cart summary
+    if (cartSummary) {
+        cartSummary.style.display = "none";
+    }
+
+    // Display a message for an empty cart
+    container.innerHTML = `
+        <h1>Your Cart</h1>
+        <h3>NO ITEM IN YOUR CART!</h3>
+        <p>Choose your favorite items and add them to the cart.</p>
+    `;
 }

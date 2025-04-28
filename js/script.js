@@ -69,14 +69,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let logoutBtn = document.querySelector(".logout-btn");
 let logoutIcon = document.querySelector(".logout img");
-logoutBtn.addEventListener("mouseover", function() {
-    logoutIcon.src = base_url + "images/logout_colored.png";
-});
-logoutBtn.addEventListener("mouseout", function() {
-    if (!window.location.href.includes("logout")) {
-        logoutIcon.src = base_url + "images/logout.png";
-    }
-});
+if (logoutBtn) {
+    logoutBtn.addEventListener("mouseover", function() {
+        logoutIcon.src = base_url + "images/logout_colored.png";
+    });
+    logoutBtn.addEventListener("mouseout", function() {
+        if (!window.location.href.includes("logout")) {
+            logoutIcon.src = base_url + "images/logout.png";
+        }
+    });
+}
 
 //Adjust top-margin of main content
 function adjustMarginTop() {

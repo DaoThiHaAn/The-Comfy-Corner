@@ -81,7 +81,9 @@ if ($_SESSION['role'] == 'admin') {
             </a>
             <div class="dropdown-content">
                 <a href="<?=$_SESSION['base_url']?>profile">View Profile</a>
+                <?php if ($_SESSION['role'] == 'user') { ?>
                 <a href="<?=$_SESSION['base_url']?>order_history">Order History</a>
+                <?php } ?>
                 <a  onclick='openLogoutDialog()' class="logout-btn">
                     <div class="logout">
                         Logout

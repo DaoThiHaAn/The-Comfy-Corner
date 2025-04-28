@@ -26,6 +26,7 @@ $result = $mydatabase->query($query);
     </div>
 
     <?php
+    $i = 1;
       while ($row = $result->fetch_assoc()) {
         // Get product details
         $query = "SELECT name, price, image, category_id FROM product WHERE id = " .$row['productId'];
@@ -42,7 +43,7 @@ $result = $mydatabase->query($query);
     <!-- Cart Item -->
     <div class="cart-item" data-product-id="<?= $row['productId']; ?>">
       <div class="item-number">
-        <p><?= $row['productId']; ?></p>
+        <p><?= $i++; ?></p>
       </div>
       <div class="main-info">
         <img src="<?= $image_path; ?>" alt="<?= $name; ?>" />
