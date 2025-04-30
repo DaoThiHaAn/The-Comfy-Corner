@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     $username_email = test_input($_POST["uname-email"]);
     $password = test_input($_POST["password"]);
 
-    $stmt = $mydatabase->prepare("SELECT username, role, password FROM account WHERE username = ? OR email = ?");
+    $stmt = $mydatabase->prepare("SELECT username, email, role, password FROM account WHERE username = ? OR email = ?");
     $stmt->bind_param("ss", $username_email, $username_email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -23,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         $result = $result->fetch_assoc();
         $hashed_password = $result["password"];
         if (password_verify($password, $hashed_password)) {
-            $_SESSION['username'] = $result["username"]; // Store the username in session
-            $_SESSION['role'] = $result["role"]; // Set the role to 'user' after login
+            $_SESSION['username'] = $result["username"]; 
+            $_SESSION['email'] = $result["email"];
+            $_SESSION['role'] = $result["role"];
             if ($result["role"]== 'user') {
                 $_SESSION['cartId'] = $mydatabase->query("SELECT id FROM cart WHERE username = '{$_SESSION['username']}'")->fetch_assoc()['id'];
             }
@@ -54,10 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
         </div>
 
         <form action="<?=$_SESSION['base_url']?>login" method="POST">                    
-            <input class="username" type="text" placeholder="Email or username" name="uname-email" value="<?=htmlspecialchars($username_email)?>"required>
+            <input class="username" type="text" placeholder="Email or username" name="uname-email" 
+            value="<?=htmlspecialchars($username_email)?>" autocomplete="username" required>
             
             <div class="password-container">
-                <input class="password" type="password" placeholder="Password" name="password" value="<?=htmlspecialchars($password)?>" required>
+                <input class="password" type="password" placeholder="Password" name="password" 
+                value="<?=htmlspecialchars($password)?>" autocomplete="current-password" required>
                 <!-- Show/Hide password + change the icon -->
                 <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
             </div>

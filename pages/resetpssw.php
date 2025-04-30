@@ -1,6 +1,7 @@
 <?php
 $password = "";
 if ($_SERVER["REQUEST_METHOD"] =="POST") {
+    $mydatabase = new mysqli("localhost", "root", "", "houseware_store");
     $email = $_SESSION['email'];
     $password = test_input($_POST["password"]);
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -9,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     $stmt->bind_param("ss", $hashed_password, $email);
     
     if($stmt->execute()) {
+        echo "<script>console.log(".$password.")</script>";   
         session_unset();
         session_destroy();
         echo "<script>
@@ -28,16 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
 
 ?>
 
-<div class="signin-container">
+<section class="signin-container">
     <div class="form-container">
         <div class="form-header">
             <p class="p1">Reset Password</p>
             <p class="p2">Please enter your new password below:</p>
         </div>
 
-        <form class="reset-form" action="<?=$_SERVER['PHP_SELF'].'?page=resetpssw'?>" method="POST">                                
+        <form class="reset-form" action="<?=$_SESSION['base_url'].'resetpssw'?>" method="POST">                                
         <div class="password-container">
-                <input class="password" type="password" placeholder="Password" name="password" required>
+                <input class="password" type="password" placeholder="Password" name="password" autocomplete="new-password" required>
                 <!-- Show/Hide password + change the icon -->
                 <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" 
                 width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
@@ -53,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
                 </ul>
             </div>
             <div class="password-container">
-                <input class="password-cf invalid-border" type="password" placeholder="Confirm password" name="password-cf" required>
+                <input class="password-cf invalid-border" type="password" placeholder="Confirm password" name="password-cf" autocomplete="new-password" required>
                 <!-- Show/Hide password + change the icon -->
                 <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password-cf"
                 width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
@@ -65,5 +67,5 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
             </button>
         </form>
     </div>
-</div>
+</section>
 

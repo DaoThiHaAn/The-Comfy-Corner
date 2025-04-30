@@ -19,7 +19,8 @@ function fetchProducts(page = 1) {
                 document.getElementById("products-table").innerHTML = data.html;
                 document.getElementById("pagination").innerHTML = data.pagination;
 
-                // Re-attach event listeners for pagination links
+                // Re-attach event listeners for deletion, pagination links
+                attachDeleteListeners();
                 attachPaginationListeners();
             } else {
                 alert(data.message || "Failed to fetch products.");
@@ -53,3 +54,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach event listeners for pagination links
     attachPaginationListeners();
 });
+
+function attachDeleteListeners() {
+    document.querySelectorAll(".btn.delete").forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            const productId = button.getAttribute("data-id");
+
+            if (confirm("Are you sure you want to delete this product?")) {
+                deleteProduct(productId);
+            }
+        });
+    });
+}
+
+function deleteProduct(productId) {
+    fetch(`${base_url}pages/delete_product_ajax.php`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `product_id=${productId}`,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert(data.message);
+                fetchProducts(); // Refresh the product table
+            } else {
+                alert(data.message || "Failed to delete the product.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error deleting product:", error);
+        });
+}

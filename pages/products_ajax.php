@@ -11,7 +11,7 @@ if ($mydatabase->connect_error) {
     die("Connection failed:".$mydatabase->connect_error);
 }
 
-$products_per_page = 12;
+$products_per_page = 4;
 
 // Get the current page from the URL (default is 1 if not set)
 $current_page = isset($_GET['pagenum']) ? (int)$_GET['pagenum'] : 1;

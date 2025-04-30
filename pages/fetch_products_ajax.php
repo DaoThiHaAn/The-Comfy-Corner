@@ -92,7 +92,7 @@ while ($row = $products->fetch_assoc()) {
                     <a href='{$_SESSION['base_url']}edit_product/{$row['id']}' class='btn modify' title='Edit'>
                         <i class='fa-regular fa-pen-to-square'></i>
                     </a>
-                    <a class='btn delete' onclick=\"deleteProduct(event, " . $row['id'] . ")\" title='Delete'>
+                    <a class='btn delete' href='#' data-id='{$row['id']}' title='Delete'>
                         <i class='fa-solid fa-trash'></i>
                     </a>
                 </td>   

@@ -84,22 +84,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="signup-form" action="signup" method="POST">
             <div class="form-element">
                 <label for="fname">First name: <span style="color: red;">*</span></label>
-                <input type="text" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" required>
+                <input type="text" name="fname" value="<?=htmlspecialchars($fname)?>" maxlength="255" autocomplete="given-name"required>
             </div>
 
             <div class="form-element">
                 <label for="lname">Last name: <span style="color: red;">*</span></label>
-                <input type="text" name="lname" value="<?=htmlspecialchars($lname)?>" maxlength="255" required>
+                <input type="text" name="lname" value="<?=htmlspecialchars($lname)?>" maxlength="255" autocomplete="family-name" required>
             </div>
 
             <div class="form-element">
                 <label for="email">Email: <span style="color: red;">*</span></label>
-                <input type="email" name="email" value="<?=htmlspecialchars($email)?>" maxlength="255" required>
+                <input type="email" name="email" value="<?=htmlspecialchars($email)?>" maxlength="255" autocomplete="email" required>
             </div>
 
             <div class="form-element">
                 <label for="uname">Username: <span style="color: red;">*</span></label>
-                <input class="username" type="text" name="uname" value="<?=htmlspecialchars($username)?>" maxlength="255" required>
+                <input class="username" type="text" name="uname" 
+                value="<?=htmlspecialchars($username)?>" maxlength="255" autocomplete="username" required>
             </div>
             <div class="acc-requirement">
                 <p>Username must:</p>
@@ -112,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-element">
                 <label for="password">Password: <span style="color: red;">*</span></label>
                 <div class="password-container">
-                    <input class="password" type="password" name="password" required>
+                    <input class="password" type="password" name="password" autocomplete="new-password" required>
                     <!-- Show/Hide password + change the icon -->
                     <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password" 
                     width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
@@ -133,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-element">
                 <label for="password-cf">Confirm password: <span style="color: red;">*</span></label>
                 <div class="password-container">
-                    <input class="password-cf invalid-border" type="password" name="password-cf" required>
+                    <input class="password-cf invalid-border" type="password" name="password-cf" autocomplete="new-password"required>
                     <!-- Show/Hide password + change the icon -->
                     <img src="<?=$_SESSION['base_url']?>images/visible.png" class="toggle-password-cf"
                     width="20" height="20" alt="visible icon" onclick="togglePassword(this)">
