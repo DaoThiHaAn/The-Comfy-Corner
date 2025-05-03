@@ -73,8 +73,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Live search
-document.getElementById("search-input").addEventListener("input", function() {
-    loadProducts(); // Load products with the current search term
+document.getElementById("search-input").addEventListener("input", function () {
+    const searchInput = this.value.trim();
+
+    // Update URL parameters
+    const params = new URLSearchParams(window.location.search);
+    if (searchInput === "") {
+        params.delete("search"); // Remove the search parameter if the input is empty
+    } else {
+        params.set("search", searchInput); // Update the search parameter
+    }
+    params.set("pagenum", 1); // Reset to the first page when searching
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    history.replaceState(null, "", newUrl);
+
+    // Reload products with the current search term
+    loadProducts();
 });
 
 // Live filter
@@ -85,15 +99,24 @@ document.querySelectorAll("input[name='category[]']").forEach(checkbox => {
 });
 
 // Show all btn
-document.querySelector(".showall-btn").addEventListener("click", function() {
+document.querySelector(".showall-btn").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent default button behavior
+
     // Reset search input and filters
     document.getElementById("search-input").value = "";
-    document.querySelectorAll("input[name='category[]']").forEach(checkbox => {
+    document.querySelectorAll("input[name='category[]']").forEach((checkbox) => {
         checkbox.checked = false;
     });
-    loadProducts(); // Load products without any filters or search terms
-}
-);
+
+    // Reset URL parameters
+    const params = new URLSearchParams();
+    params.set("pagenum", 1); // Reset to the first page
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    history.replaceState(null, "", newUrl);
+
+    // Reload products with default filters
+    loadProducts();
+});
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("pagination-link") || event.target.closest(".pagination-link")) {
